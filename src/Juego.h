@@ -11,11 +11,11 @@
 #include <iostream>
 #include <time.h>
 
-#include "Jugador.h"
-#include "Dibujante.h"
-#include "Casillero.h"
-#include "Arbitro.h"
-#include "Tablero.h"
+#include "src/Arbitro.h"
+#include "src/Casillero.h"
+#include "src/Dibujante.h"
+#include "src/Jugador.h"
+#include "src/Tablero.h"
 
 class Juego{
 

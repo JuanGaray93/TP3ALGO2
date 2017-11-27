@@ -1,4 +1,4 @@
-#include "Jugador.h"
+#include "src/Jugador.h"
 
 
 Jugador::Jugador(std::string nom, int numJugador){

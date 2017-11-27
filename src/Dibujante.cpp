@@ -4,7 +4,7 @@
  *  Created on: Oct 18, 2017
  *      Author: juan
  */
-#include "Dibujante.h"
+#include "src/Dibujante.h"
 
 Dibujante::Dibujante(int cantidadDeColumnas, int cantidadDeFilas, int cantidadDeJugadores, std::string* nombres){
 

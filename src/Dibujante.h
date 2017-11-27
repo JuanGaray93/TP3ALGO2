@@ -8,9 +8,9 @@
 #ifndef DIBUJANTE_H_
 #define DIBUJANTE_H_
 
-#include "EasyBMP/EasyBMP.h"
 #include <sstream>
 #include <algorithm>
+#include "src/EasyBMP/EasyBMP.h"
 
 class Dibujante{
 

@@ -5,7 +5,7 @@
  *      Author: juan
  */
 
-#include "Tablero.h"
+#include "src/Tablero.h"
 
 
 //METODOS DE INICIALIZACION
