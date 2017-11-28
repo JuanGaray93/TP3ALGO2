@@ -18,7 +18,7 @@
 *                                                *
 *************************************************/
 
-#include "../src/EasyBMP/EasyBMP.h"
+#include "src/EasyBMP/EasyBMP.h"
 
 /* These functions are defined in EasyBMP.h */
 
