@@ -20,7 +20,7 @@ private:
 
 public:
 
-	arbol(){
+	CondensadorDeFlujo(){
 		raiz = 0;
 	}
 
