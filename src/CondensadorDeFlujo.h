@@ -1,18 +1,19 @@
 /*
- * ArbolBinario.h
+ * condensadorDeFlujo.h
  *
- *  Created on: Nov 27, 2017
+ *  Created on: Nov 28, 2017
  *      Author: juan
  */
 
-#ifndef ARBOLBINARIO_H_
-#define ARBOLBINARIO_H_
+#ifndef CONDENSADORDEFLUJO_H_
+#define CONDENSADORDEFLUJO_H_
+
 
 #include "NodoDeArbol.h"
 #include "Lista.h"
 
 template <class T>
-class arbol{
+class CondensadorDeFlujo{
 
 private:
 	NodoDeArbol<T>* raiz;
@@ -33,6 +34,4 @@ public:
 
 
 
-
-
-#endif /* ARBOLBINARIO_H_ */
+#endif /* CONDENSADORDEFLUJO_H_ */
