@@ -7,12 +7,64 @@
 
 #ifndef NODODEARBOL_H_
 #define NODODEARBOL_H_
+#include "Lista.h"
 
 template <class T>
 class NodoDeArbol{
-private:
 
+private:
+	Lista<NodoDeArbol>* hijos;
+	T* contenido;
 public:
+
+	/*
+	 * Post: Crea nuevo nodo sin hijos y sin contenido.
+	 */
+	NodoDeArbol(){
+		hijos = new Lista<NodoDeArbol>;
+		contenido = 0;
+	}
+
+	/*
+	 * Post: Crea un nuevo nodo sin hijos con el contenido pasado
+	 */
+	NodoDeArbol(T nuevoContenido){
+		hijos = new Lista<NodoDeArbol>;
+		contenido = new T;
+		*contenido = nuevoContenido;
+	}
+
+	/*
+	 * Post: Crea un nuevo nodo con contenido e hijos dados.
+	 */
+	NodoDeArbol(T nuevoContenido, Lista<NodoDeArbol> nuevosHijos){
+		hijos = new Lista<NodoDeArbol>(nuevosHijos);
+		contenido = new T;
+		*contenido = nuevoContenido;
+	}
+
+
+	/*
+	 * Pre: El nodo existe
+	 * Post: el nodo pasa a tener el contenido dado.
+	 * 		 Si ya tenia contenido, se sobreescribe y se pierden los datos anteriores
+	 */
+	void asignarContenido(T nuevoContenido){
+		if (contenido==0){
+			contenido = new T;
+		}
+		*contenido = nuevoContenido;
+	}
+
+	void asignarNuevoHijo(NodoDeArbol nuevoHijo){
+		hijos->agregar(nuevoHijo);
+	}
+
+	int devolverCantidadDeHijos(){
+		return ( hijos->contarElementos() );
+	}
+
+
 
 
 
