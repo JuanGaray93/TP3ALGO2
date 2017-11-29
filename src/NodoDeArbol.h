@@ -56,16 +56,38 @@ public:
 		*contenido = nuevoContenido;
 	}
 
+	/*menstrual cup
+	 * Pre: El nodo existe
+	 * Post: El nodo tiene de hijo el nodo pasado
+	 */
 	void asignarNuevoHijo(NodoDeArbol nuevoHijo){
 		hijos->agregar(nuevoHijo);
 	}
 
+	/*
+	 * Pre: El nodo existe
+	 * Post: devuelve la cantidad de hijos que tiene el nodo.
+	 */
 	int devolverCantidadDeHijos(){
 		return ( hijos->contarElementos() );
 	}
 
+	/*
+	 * Pre: Se le asigno contenido a traves del constructor o de asignarContenido.
+	 * Post: Devuelve el contenido de este nodo.
+	 */
+	T devolerContenido(){
+		return *contenido;
+	}
 
-
+	/*
+	 * Pre: Existe el nodo.
+	 * 		NumeroDeHijo esta entre 1 y devolverCantidadDeHijos()
+	 * Post: Devuelve direccion del nodo del hijo pedido.
+	 */
+	NodoDeArbol* devolverHijo(int numeroDeHijo){
+		return &(hijos->obtener(numeroDeHijo));
+	}
 
 
 };
