@@ -10,7 +10,7 @@
 
 #include <sstream>
 #include <algorithm>
-#include "src/EasyBMP/EasyBMP.h"
+#include "EasyBMP/EasyBMP.h"
 
 class Dibujante{
 

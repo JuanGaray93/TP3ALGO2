@@ -1,65 +1,59 @@
 
-#include <Jugada.h>
+#include "Jugada.h"
 
-	Jugada::Jugada(){
-	 this->banderaColocada = 0;
-	 this->casillerosModificados = 0;
-	 this->eliminado = 0;
-	 this->posicionDelEliminado = 0;
-	 this->quienJugo = 0;
-	 this->fueronDestapados = 0;
-	}
+Jugada::Jugada(){
+ this->banderaColocada = 0;
+ this->casillerosModificados = 0;
+ this->eliminado = 0;
+ this->posicionDelEliminado = 0;
+ this->quienJugo = 0;
+ this->fueronDestapados = 0;
+}
 
+Jugador Jugada::obtenerJugadorQueJugo(){
+	return this->quienJugo;
+}
 
+Jugador Jugada::obtenerJugadorEliminado(){
+	return this->eliminado;
+}
 
-	Jugador Jugada::obtenerJugadorQueJugo(){
-		return this->quienJugo;
-	}
+int Jugada::obtenerPosicionDelEliminado(){
+	return this->posicionDelEliminado;
+}
+Lista<Coordenada> Jugada::obtenerCasilleros(){
+	return this->casillerosModificados;
+}
 
-	Jugador Jugada::obtenerJugadorEliminado(){
-		return this->eliminado;
-	}
+bool Jugada::casilleroDestapados(){
+	return this->fueronDestapados;
+}
 
-	int Jugada::obtenerPosicionDelEliminado(){
-		return this->posicionDelEliminado;
-	}
-	Lista<Coordenada> Jugada::obtenerCasilleros(){
-		return this->casillerosModificados;
-	}
+Bandera* Jugada::obtenerBanderaColocada(){
+	return this->banderaColocada;
+}
 
-	bool Jugada::casilleroDestapados(){
-		return this->fueronDestapados;
-	}
+void Jugada::establecerQuienJugo(Jugador quienJugo){
+	this->quienJugo = quienJugo;
+}
 
-	Bandera* Jugada::obtenerBanderaColocada(){
-		return this->banderaColocada;
-	}
+void Jugada::establecerJugadorEliminado(Jugador eliminado){
+	this->eliminado = eliminado;
+}
 
-	void Jugada::establecerQuienJugo(Jugador quienJugo){
-		this->quienJugo = quienJugo;
-	}
+void Jugada::establecerPosicionEliminado(int posicion){
+	this->posicionDelEliminado = posicion;
+}
 
-	void Jugada::establecerJugadorEliminado(Jugador eliminado){
-		this->eliminado = eliminado;
-	}
+void Jugada::agregarCasilleroModificado(Coordenada casillero){
+	this->casillerosModificados.agregar(casillero);
+}
 
-	void Jugada::establecerPosicionEliminado(int posicion){
-		this->posicionDelEliminado = posicion;
-	}
+void Jugada::establecerFueronDestapados(bool destapados){
+	this->fueronDestapados = destapados;
+}
 
-	void Jugada::agregarCasilleroModificado(Coordenada casillero){
-		this->casillerosModificados.agregar(casillero);
-	}
+void Jugada::establecerBanderaColocada(Bandera* bandera){
+	this->banderaColocada = bandera;
+}
 
-	void Jugada::establecerFueronDestapados(bool destapados){
-		this->fueronDestapados = destapados;
-	}
-
-	void Jugada::establecerBanderaColocada(Bandera* bandera){
-		this->banderaColocada = bandera;
-	}
-};
-
-
-
-#endif

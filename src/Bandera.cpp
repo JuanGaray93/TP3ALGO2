@@ -1,4 +1,4 @@
-#include "src/Bandera.h"
+#include "Bandera.h"
 
 Bandera::Bandera(int colocadaPor){
 	this->jugadorQueColoco = colocadaPor;

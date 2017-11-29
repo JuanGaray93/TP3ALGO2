@@ -65,9 +65,9 @@
 // set to a default of 96 dpi
 #endif
 
-#include "../src/EasyBMP/EasyBMP_DataStructures.h"
-#include "../src/EasyBMP/EasyBMP_BMP.h"
-#include "../src/EasyBMP/EasyBMP_VariousBMPutilities.h"
+#include "../EasyBMP/EasyBMP_DataStructures.h"
+#include "../EasyBMP/EasyBMP_BMP.h"
+#include "../EasyBMP/EasyBMP_VariousBMPutilities.h"
 
 #ifndef _EasyBMP_Version_
 #define _EasyBMP_Version_ 1.06

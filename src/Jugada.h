@@ -2,10 +2,10 @@
 #ifndef JUGADA_H_
 #define JUGADA_H_
 
-#include <Jugador.h>;
-#include <Lista.h>;
-#include <Coordenada.h>;
-#include <Bandera.h>;
+#include "Jugador.h"
+#include "Lista.h"
+#include "Coordenada.h"
+#include "Bandera.h"
 
 class Jugada{
 private:

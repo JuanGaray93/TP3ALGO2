@@ -9,7 +9,7 @@
 #define TABLERO_H_
 #include <stdlib.h>
 #include <iostream>
-#include "src/Casillero.h"
+#include "Casillero.h"
 
 class Tablero{
 

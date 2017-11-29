@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "src/Nodo.h"
+#include "Nodo.h"
 #ifndef COLA_H_
 #define COLA_H_
 

@@ -5,6 +5,7 @@
 #define NULL 0;
 #endif
 #include <iostream>
+
 template <class T> class Nodo{
 private:
     T dato;

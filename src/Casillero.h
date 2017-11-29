@@ -1,7 +1,7 @@
 #ifndef CASILLERO_H_
 #define CASILLERO_H_
 
-#include "src/Bandera.h"
+#include "Bandera.h"
 
 class Casillero{
 

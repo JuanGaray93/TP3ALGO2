@@ -5,7 +5,7 @@
  *      Author: juan
  */
 
-#include "src/Arbitro.h"
+#include "Arbitro.h"
 
 
 Arbitro::Arbitro(std::string* nombresDeJugadores, int numeroDeJugadores, int dificultadPedida){

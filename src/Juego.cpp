@@ -6,7 +6,7 @@
  *      Author: juan
  */
 
-#include "src/Juego.h"
+#include "Juego.h"
 
 Juego::Juego(int dificultad, int numeroDeJugadores, int filas, int columnas, std::string* nombresDeJugadores){
 

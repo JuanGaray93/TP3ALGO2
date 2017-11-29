@@ -5,7 +5,7 @@
  *      Author: juan
  */
 
-#include "src/Casillero.h"
+#include "Casillero.h"
 
 Casillero::Casillero(){
 	this->bomba = false;

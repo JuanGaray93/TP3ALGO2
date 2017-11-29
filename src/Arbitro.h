@@ -8,8 +8,8 @@
 #ifndef ARBITRO_H_
 #define ARBITRO_H_
 
-#include "src/Cola.h"
-#include "src/Jugador.h"
+#include "Cola.h"
+#include "Jugador.h"
 
 class Arbitro{
 

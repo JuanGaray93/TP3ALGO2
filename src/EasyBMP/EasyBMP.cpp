@@ -18,7 +18,7 @@
 *                                                *
 *************************************************/
 
-#include "src/EasyBMP/EasyBMP.h"
+#include "../EasyBMP/EasyBMP.h"
 
 /* These functions are defined in EasyBMP.h */
 
@@ -111,6 +111,9 @@ void BMFH::display( void )
       << "bfOffBits: " << (int) bfOffBits << endl << endl;
 }
 
+
+
+
 /* These functions are defined in EasyBMP_BMP.h */
 
 RGBApixel BMP::GetPixel( int i, int j ) const
@@ -119,12 +122,16 @@ RGBApixel BMP::GetPixel( int i, int j ) const
  bool Warn = false;
  if( i >= Width )
  { i = Width-1; Warn = true; }
+
  if( i < 0 )
  { i = 0; Warn = true; }
+
  if( j >= Height )
  { j = Height-1; Warn = true; }
+
  if( j < 0 )
  { j = 0; Warn = true; }
+
  if( Warn && EasyBMPwarnings )
  {
   cout << "EasyBMP Warning: Attempted to access non-existent pixel;" << endl

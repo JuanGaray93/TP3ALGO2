@@ -1,4 +1,4 @@
-#include <Coordenada.h>;
+#include "Coordenada.h"
 
 
 Coordenada::Coordenada(int coordenadaX, int coordenadaY){
@@ -18,7 +18,7 @@ void Coordenada::cambiarCoordX(int coordenadaX){
 	this->coordenadaX = coordenadaX;
 }
 
-void Coordenada::cambiarCoordX(int coordenadaY){
+void Coordenada::cambiarCoordY(int coordenadaY){
 	this->coordenadaY = coordenadaY;
 }
 
