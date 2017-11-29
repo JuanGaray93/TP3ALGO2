@@ -56,7 +56,7 @@ public:
 		*contenido = nuevoContenido;
 	}
 
-	/*menstrual cup
+	/*
 	 * Pre: El nodo existe
 	 * Post: El nodo tiene de hijo el nodo pasado
 	 */
