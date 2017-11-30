@@ -2,26 +2,25 @@
 #include "Jugada.h"
 
 Jugada::Jugada(){
- this->banderaColocada = 0;
- this->casillerosModificados = 0;
- this->eliminado = 0;
- this->posicionDelEliminado = 0;
- this->quienJugo = 0;
- this->fueronDestapados = 0;
+	this->banderaColocada = 0;
+	this->casillerosModificados = 0;
+	this->eliminado = false;
+	this->posicionDelEliminado = 0;
+	this->fueronDestapados = 0;
 }
 
 Jugador Jugada::obtenerJugadorQueJugo(){
 	return this->quienJugo;
 }
 
-Jugador Jugada::obtenerJugadorEliminado(){
+bool Jugada::fueEliminado(){
 	return this->eliminado;
 }
 
 int Jugada::obtenerPosicionDelEliminado(){
 	return this->posicionDelEliminado;
 }
-Lista<Coordenada> Jugada::obtenerCasilleros(){
+Lista<Coordenada>* Jugada::obtenerCasilleros(){
 	return this->casillerosModificados;
 }
 
@@ -37,8 +36,8 @@ void Jugada::establecerQuienJugo(Jugador quienJugo){
 	this->quienJugo = quienJugo;
 }
 
-void Jugada::establecerJugadorEliminado(Jugador eliminado){
-	this->eliminado = eliminado;
+void Jugada::establecerQueFueEliminado(){
+	this->eliminado =true;
 }
 
 void Jugada::establecerPosicionEliminado(int posicion){
@@ -46,7 +45,7 @@ void Jugada::establecerPosicionEliminado(int posicion){
 }
 
 void Jugada::agregarCasilleroModificado(Coordenada casillero){
-	this->casillerosModificados.agregar(casillero);
+	this->casillerosModificados->agregar(casillero);
 }
 
 void Jugada::establecerFueronDestapados(bool destapados){

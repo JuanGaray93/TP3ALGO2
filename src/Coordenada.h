@@ -12,6 +12,11 @@ class Coordenada{
  public:
 
 	 /*
+	  * Post: Las coordenadas son ambas cero
+	  */
+	 Coordenada();
+
+	 /*
 	  * Post: Crea coordenadas
 	  */
 	 Coordenada(int coordenadaX, int coordenadaY);
@@ -20,14 +25,14 @@ class Coordenada{
 	  * Post devuelve la coordenada x
 	  */
 
-	 int obtenerCoordX();
+	 int obtenerCoordX() const;
 
 	 /*
 	  * Posts devuelve la coordenada y
 	  */
 
 
-	 int obtenerCoordY();
+	 int obtenerCoordY() const;
 
 	 /*
 	  * Post cambia la coordenada x
@@ -40,6 +45,11 @@ class Coordenada{
 	  */
 
 	 void cambiarCoordY(int coordY);
+
+	 /*
+	  *
+	  */
+	 Coordenada operator=(const Coordenada& otraCoordenada);
 
  };
 

@@ -10,9 +10,9 @@
 class Jugada{
 private:
 	Jugador quienJugo;
-	Jugador eliminado;
+	bool eliminado;
 	int posicionDelEliminado;
-	Lista<Coordenada> casillerosModificados;
+	Lista<Coordenada>* casillerosModificados;
 	bool fueronDestapados;
 	Bandera* banderaColocada;
 
@@ -28,11 +28,11 @@ public:
 
 	Jugador obtenerJugadorQueJugo();
 
-	Jugador obtenerJugadorEliminado();
+	bool fueEliminado();
 
 	int obtenerPosicionDelEliminado();
 
-	Lista<Coordenada> obtenerCasilleros();
+	Lista<Coordenada>* obtenerCasilleros();
 
 	bool casilleroDestapados();
 
@@ -40,7 +40,7 @@ public:
 
 	void establecerQuienJugo(Jugador quienJugo);
 
-	void establecerJugadorEliminado(Jugador eliminado);
+	void establecerQueFueEliminado();
 
 	void establecerPosicionEliminado(int posicion);
 

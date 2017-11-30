@@ -6,9 +6,9 @@
  */
 
 
-#include "src/Dibujante.h"
-#include "src/Juego.h"
-#include "src/Presentador.h"
+#include "Dibujante.h"
+#include "Juego.h"
+#include "Presentador.h"
 
 
 int main(){
