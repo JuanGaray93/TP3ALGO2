@@ -1,7 +1,7 @@
 /*
  * NodoDeArbol.h
  *
- *  Created on: Nov 27, 2017
+ *  Created on: Nov 27, 2NULL17
  *      Author: juan
  */
 
@@ -14,23 +14,19 @@ class NodoDeArbol{
 
 private:
 	Lista<NodoDeArbol>* hijos;
+	NodoDeArbol* padre;
 	T* contenido;
 public:
 
 	/*
 	 * Post: Crea nuevo nodo sin hijos y sin contenido.
 	 */
-	NodoDeArbol();
+	NodoDeArbol(NodoDeArbol* padreNuevo);
 
 	/*
 	 * Post: Crea un nuevo nodo sin hijos con el contenido pasado
 	 */
-	NodoDeArbol(T nuevoContenido);
-
-	/*
-	 * Post: Crea un nuevo nodo con contenido e hijos dados.
-	 */
-	NodoDeArbol(T nuevoContenido, Lista<NodoDeArbol> nuevosHijos);
+	NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido);
 
 	/*
 	 * Pre: El nodo existe
@@ -64,32 +60,30 @@ public:
 	 */
 	NodoDeArbol* devolverHijo(int numeroDeHijo);
 
+	bool tieePadre(){
+		return (padre == NULL);
+	}
 
 };
 
 template <class T>
-NodoDeArbol<T>::NodoDeArbol(){
+NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 	hijos = new Lista<NodoDeArbol>;
-	contenido = 0;
+	padre = padreNuevo;
+	contenido = NULL;
 }
 
 template <class T>
-NodoDeArbol<T>::NodoDeArbol(T nuevoContenido){
+NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido){
 	hijos = new Lista<NodoDeArbol>;
-	contenido = new T;
-	*contenido = nuevoContenido;
-}
-
-template <class T>
-NodoDeArbol<T>::NodoDeArbol(T nuevoContenido, Lista<NodoDeArbol> nuevosHijos){
-	hijos = new Lista<NodoDeArbol>(nuevosHijos);
+	padre = padreNuevo;
 	contenido = new T;
 	*contenido = nuevoContenido;
 }
 
 template <class T>
 void NodoDeArbol<T>::asignarContenido(T nuevoContenido){
-	if (contenido==0){
+	if (contenido == NULL){
 		contenido = new T;
 	}
 	*contenido = nuevoContenido;
