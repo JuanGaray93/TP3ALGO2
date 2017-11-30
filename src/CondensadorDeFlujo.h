@@ -17,20 +17,37 @@ class CondensadorDeFlujo{
 
 private:
 	NodoDeArbol<T>* raiz;
+	NodoDeArbol<T>* cursor;
+	NodoDeArbol<T>* jugadaActual;
 
 public:
 
-	CondensadorDeFlujo(){
-		raiz = 0;
+	/*
+	 * Post:
+	 */
+	CondensadorDeFlujo(T jugadaInicial);
+
+	/*
+	 * Pre: El condensador existe
+	 * Post:
+	 */
+	void agregarNodo(T jugadaNueva){
+		jugadaActual->asignarNuevoHijo(jugadaNueva);
 	}
 
 
-
-
-
-
-
 };
+
+
+template <class T>
+CondensadorDeFlujo<T>::CondensadorDeFlujo(T jugadaInicial){
+	raiz = new NodoDeArbol<T>(jugadaInicial);
+	cursor = raiz;
+	jugadaActual = raiz;
+}
+
+
+
 
 
 

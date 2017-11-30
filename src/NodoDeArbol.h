@@ -60,9 +60,10 @@ public:
 	 */
 	NodoDeArbol* devolverHijo(int numeroDeHijo);
 
-	bool tieePadre(){
-		return (padre == NULL);
-	}
+	/*
+	 * Post: informa si el nodo de arbol tiene padre (si no lo tiene, es raiz)
+	 */
+	bool tienePadre();
 
 };
 
@@ -109,7 +110,10 @@ NodoDeArbol* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
 	return &(hijos->obtener(numeroDeHijo));
 }
 
-
+template <class T>
+bool NodoDeArbol<T>::tienePadre(){
+	return (padre == NULL);
+}
 
 
 
