@@ -56,7 +56,6 @@ void Arbitro::anunciarGanador(){
 	while(! colaDeJugadores.estaVacia() ){
 
 		posibleGanador = colaDeJugadores.desacolar();
-		std::cout << "posible ganador: " << posibleGanador.consultarNombre() << std::endl;
 
 		if (posibleGanador.consultarPuntaje() > puntajeMaximo ){
 			ganador = posibleGanador;
