@@ -16,6 +16,9 @@ private:
 	Lista<NodoDeArbol>* hijos;
 	NodoDeArbol* padre;
 	T* contenido;
+	int profundidad;
+
+
 public:
 
 	/*
@@ -65,6 +68,11 @@ public:
 	 */
 	bool tienePadre();
 
+	/*
+	 *
+	 */
+	int devolverProfundidad();
+
 };
 
 template <class T>
@@ -72,6 +80,11 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 	hijos = new Lista<NodoDeArbol>;
 	padre = padreNuevo;
 	contenido = NULL;
+	if (padre != NULL){
+		profundidad = padre->devolverProfundidad();
+	} else {
+		profundidad = 1;
+	}
 }
 
 template <class T>
@@ -80,6 +93,11 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido){
 	padre = padreNuevo;
 	contenido = new T;
 	*contenido = nuevoContenido;
+	if (padre != NULL){
+			profundidad = padre->devolverProfundidad();
+	} else {
+		profundidad = 1;
+	}
 }
 
 template <class T>
@@ -115,6 +133,10 @@ bool NodoDeArbol<T>::tienePadre(){
 	return (padre == NULL);
 }
 
+template <class T>
+int NodoDeArbol<T>::devolverProfundidad(){
+	return profundidad;
+}
 
 
 
