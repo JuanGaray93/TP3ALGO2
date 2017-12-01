@@ -109,8 +109,11 @@ void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada>* nodoNuevo){
 
 
 void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
-
-
+	if(nodoActual->tienePadre() && cantidadDeNodos > 0){
+		/*DESHACER CAMBIOS DE NODO ACTUAL*/
+		nodoActual = nodoActual->devolverPadre();
+		retroceder(cantidadDeNodos-1);
+	}
 }
 
 
@@ -119,7 +122,7 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 	int nodosPosibles = nodoActual->devolverCantidadDeHijos();
 
 	/* Probablemente se pueda optimizar o emprolijar  */
-	if(nodosPosibles != 0){
+	if(nodosPosibles != 0 && cantidadDeNodos > 0){
 		/*SUMAR CAMBIOS SOBRE JUEGO*/
 		int hijoASeguir;
 

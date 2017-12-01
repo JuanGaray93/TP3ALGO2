@@ -64,6 +64,11 @@ public:
 	NodoDeArbol<T>* devolverHijo(int numeroDeHijo);
 
 	/*
+	 * Pre: Existe el nodo.
+	 */
+	NodoDeArbol<T>* devolverPadre();
+
+	/*
 	 * Post: informa si el nodo de arbol tiene padre (si no lo tiene, es raiz)
 	 */
 	bool tienePadre();
@@ -127,9 +132,15 @@ NodoDeArbol<T>* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
 }
 
 template <class T>
+NodoDeArbol<T>* NodoDeArbol<T>::devolverPadre(){
+	return padre;
+}
+
+template <class T>
 bool NodoDeArbol<T>::tienePadre(){
 	return (padre == NULL);
 }
+
 
 template <class T>
 int NodoDeArbol<T>::devolverProfundidad(){
