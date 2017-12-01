@@ -250,6 +250,25 @@ Jugada* Juego::devolverJugada(){
 	return this->jugadaActual ;
 }
 
+void Juego::rehacerJugadaBandera(Coordenada* donde, Jugador* quien){
+
+	int columna = donde->obtenerCoordX();
+	int fila = donde->obtenerCoordY();
+
+	if ( tablero.hayBanderaEn(columna, fila) ){
+		tablero.quitarBandera(columna, fila);
+	} else {
+		int nroJugador = quien->consultarNumero();
+		tablero.colocarBandera(columna, fila, nroJugador);
+	}
+}
+
+void Juego::restablecerPuntaje(Jugador* quien){
+
+}
+
+
+
 Juego::~Juego(){
 	delete dibujante;
 	delete arbitro;

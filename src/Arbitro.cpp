@@ -100,7 +100,6 @@ void Arbitro::revivirJugador(Jugador jugadorARevivir){
 
 	retomarPosicionDelCursor(siguienteAJugar);
 
-
 }
 
 void Arbitro::retomarPosicionDelCursor(Jugador posicionDelCursor){
@@ -113,7 +112,11 @@ void Arbitro::retomarPosicionDelCursor(Jugador posicionDelCursor){
 	}
 }
 
-
+void Arbitro::restablecerPuntaje(Jugador* quien){
+	/*
+	 *
+	 */
+}
 
 
 

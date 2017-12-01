@@ -95,6 +95,16 @@ public:
 	 * Post: Revive al jugador eliminado
 	 */
 	void revivirJugador(Jugador jugadorARevivir);
+
+	/*
+	 *
+	 */
+	void Arbitro::restablecerPuntaje(Jugador* quien);
+
+	/*
+	 *
+	 */
+	~Arbitro();
 };
 
 

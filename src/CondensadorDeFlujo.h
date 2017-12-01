@@ -105,7 +105,25 @@ void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada*>* nodoNuevo){
 
 void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 	if(nodoActual->tienePadre() && cantidadDeNodos > 0){
+
+
 		/*DESHACER CAMBIOS DE NODO ACTUAL*/
+
+		Jugada* jugadaADeshacer = nodoActual->devolverContenido();
+		Jugador* quienJugo = jugadaADeshacer->obtenerJugadorQueJugo();
+		Lista<Coordenada*>* casillerosAfectados = jugadaADeshacer->obtenerCasilleros();
+
+		if (! jugadaADeshacer->huboDestapados() ){ //Fue colocar-quitar bandera
+			Coordenada* coordenadaDeJuego = casillerosAfectados->obtener(1);
+			juego->rehacerJugadaBandera(coordenadaDeJuego, quienJugo);
+
+		} else {
+
+		}
+		//Corrijo puntaje de jugador
+
+
+
 		nodoActual = nodoActual->devolverPadre();
 		retroceder(cantidadDeNodos-1);
 	}
@@ -119,7 +137,14 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 	/* Probablemente se pueda optimizar o emprolijar  */
 	if(nodosPosibles != 0 && cantidadDeNodos > 0){
 
+
+
+
 		/*SUMAR CAMBIOS SOBRE JUEGO*/
+
+
+
+
 		int hijoASeguir;
 
 		if( nodosPosibles > 1 ){
@@ -198,8 +223,8 @@ void CondensadorDeFlujo::ejecutarJuego(){
 		juego->avanzarTurno();
 		if(huboCambios){
 			//Guardo en un nodo nuevo el estado actual de la partida
-			Jugada* jugadaActual = juego->devolverJugada();
-			NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaActual);
+			Jugada* jugadaNueva = juego->devolverJugada();
+			NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaNueva);
 			agregarNodo(aGuardar);
 		}
 

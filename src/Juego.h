@@ -54,6 +54,7 @@ class Juego{
 
 	//LOGICA DE JUEGO
 
+
 	/*
 	 * Post: El jugador actual es el siguiente en la lista
 	 */
@@ -130,6 +131,29 @@ class Juego{
 	 * Post: Devuelve una std::string con el numero que se le paso
 	 */
 	std::string hacerCadena(int numero);
+
+
+	/*
+	 *
+	 */
+	void revivirJugador(Jugador jugadorARevivir){
+		arbitro->revivirJugador(jugadorARevivir);
+		//dibujante->revivirJugador(jugadorARevivir);
+	}
+
+	void taparCasilleros(){
+
+	}
+
+	/*
+	 *
+	 */
+	void rehacerJugadaBandera(Coordenada* donde, Jugador* quien);
+
+	/*
+	 *
+	 */
+	void restablecerPuntaje(Jugador* quien);
 
 	/*
 	 * Libera la memoria pedida para el DIBUJANTE y el ARBITRO.

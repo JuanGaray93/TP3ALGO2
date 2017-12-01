@@ -8,12 +8,13 @@
 #ifndef NODODEARBOL_H_
 #define NODODEARBOL_H_
 #include "Lista.h"
+#include "Jugada.h"
 
 template <class T>
 class NodoDeArbol{
 
 private:
-	Lista<NodoDeArbol*>* hijos;
+	Lista< NodoDeArbol<Jugada*>* >* hijos;
 	NodoDeArbol* padre;
 	T* contenido;
 	int profundidad;
@@ -93,7 +94,7 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 	} else {
 		profundidad = 1;
 	}
-	hijos = new Lista<NodoDeArbol*>;
+	hijos = new Lista<NodoDeArbol<Jugada*>*>;
 }
 
 template <class T>

@@ -185,9 +185,6 @@ bool Tablero::noQuedanCasilleros(){
 
 //METODOS PARA DESHACER JUGADAS
 
-
-
-
 void Tablero::taparCasilleros(Lista<Coordenada*>* casilleros){
 	casilleros->iniciarCursor();
 	while (casilleros->avanzarCursor()){
