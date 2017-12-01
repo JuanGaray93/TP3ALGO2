@@ -19,6 +19,7 @@ private:
 
 	Lista<Jugador> listaDeJugadores;
 	Jugador actual;
+	int posicionCursor;
 
 	/*
 	 * Post: inicializa la lista de jugadores con los jugadores creados
