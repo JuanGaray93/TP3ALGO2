@@ -27,6 +27,7 @@ private:
 	Juego* juego;
 	bool sigueElJuego;
 	Jugada jugadaActual;
+	bool huboCambios;
 
 public:
 
@@ -63,17 +64,17 @@ public:
 	void ejecutarJuego(){
 
 		juego->avanzarTurno();
-
-
-
 		while(sigueElJuego){
 
 			juego->declararTurno();
 			juego->tomarJugada();
 			juego->avanzarTurno();
-			//Guardo en un nodo nuevo el estado actual de la partida
-			NodoDeArbol<Jugada>* aGuardar = new NodoDeArbol<Jugada>(nodoActual, jugadaActual);
-			agregarNodo(aGuardar);
+			if(huboCambios){
+				//Guardo en un nodo nuevo el estado actual de la partida
+				NodoDeArbol<Jugada>* aGuardar = new NodoDeArbol<Jugada>(nodoActual, jugadaActual);
+				agregarNodo(aGuardar);
+			}
+
 			avanzar(1);
 			sigueElJuego = !(juego->terminoLaPartida());
 		};
@@ -96,6 +97,7 @@ CondensadorDeFlujo::CondensadorDeFlujo(){
 	profundidadTotal = 1;
 	juego = NULL;
 	sigueElJuego = true;
+	huboCambios = false;
 }
 
 void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada>* nodoNuevo){
