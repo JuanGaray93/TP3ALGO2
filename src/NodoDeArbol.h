@@ -13,7 +13,7 @@ template <class T>
 class NodoDeArbol{
 
 private:
-	Lista<NodoDeArbol*> hijos;
+	Lista<NodoDeArbol*>* hijos;
 	NodoDeArbol* padre;
 	T* contenido;
 	int profundidad;
@@ -63,6 +63,10 @@ public:
 	 */
 	NodoDeArbol<T>* devolverHijo(int numeroDeHijo);
 
+	Lista<NodoDeArbol*>* devolverListaDeHijos(){
+		return hijos;
+	}
+
 	/*
 	 * Pre: Existe el nodo.
 	 */
@@ -89,6 +93,7 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 	} else {
 		profundidad = 1;
 	}
+	hijos = new Lista<NodoDeArbol*>;
 }
 
 template <class T>
@@ -101,6 +106,7 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido){
 	} else {
 		profundidad = 1;
 	}
+	hijos = new Lista<NodoDeArbol*>;
 }
 
 template <class T>
@@ -113,12 +119,12 @@ void NodoDeArbol<T>::asignarContenido(T nuevoContenido){
 
 template <class T>
 void NodoDeArbol<T>::asignarNuevoHijo(NodoDeArbol* nuevoHijo){
-	hijos.agregar(nuevoHijo);
+	hijos->agregar(nuevoHijo);
 }
 
 template <class T>
 int NodoDeArbol<T>::devolverCantidadDeHijos(){
-	return ( hijos.contarElementos() );
+	return ( hijos->contarElementos() );
 }
 
 template <class T>
@@ -128,7 +134,7 @@ T NodoDeArbol<T>::devolverContenido(){
 
 template <class T>
 NodoDeArbol<T>* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
-	return hijos.obtener(numeroDeHijo);
+	return hijos->obtener(numeroDeHijo);
 }
 
 template <class T>

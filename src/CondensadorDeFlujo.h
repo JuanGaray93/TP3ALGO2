@@ -20,12 +20,11 @@
 class CondensadorDeFlujo{
 
 private:
-	NodoDeArbol<Jugada>* raiz;
-	NodoDeArbol<Jugada>* cursor;
-	NodoDeArbol<Jugada>* nodoActual;
+	NodoDeArbol<Jugada*>* raiz;
+	NodoDeArbol<Jugada*>* cursor;
+	NodoDeArbol<Jugada*>* nodoActual;
 	Juego* juego;
 	bool sigueElJuego;
-	Jugada jugadaActual;
 	bool huboCambios;
 
 public:
@@ -39,7 +38,7 @@ public:
 	 * Pre: El condensador existe
 	 * Post: Se suma un nuevo nodo al arbol, partiendo del nodo actual.
 	 */
-	void agregarNodo(NodoDeArbol<Jugada>* nodoNuevo);
+	void agregarNodo(NodoDeArbol<Jugada*>* nodoNuevo);
 
 	/* Pre: La cantidad de nodos a retroceder es menos que devolverProfundidadActual()
 	 *
@@ -91,7 +90,7 @@ public:
 
 
 CondensadorDeFlujo::CondensadorDeFlujo(){
-	raiz = new NodoDeArbol<Jugada>(NULL);
+	raiz = new NodoDeArbol<Jugada*>(NULL);
 	cursor = raiz;
 	nodoActual = raiz;
 	juego = NULL;
@@ -99,7 +98,7 @@ CondensadorDeFlujo::CondensadorDeFlujo(){
 	huboCambios = false;
 }
 
-void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada>* nodoNuevo){
+void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada*>* nodoNuevo){
 	nodoActual->asignarNuevoHijo(nodoNuevo);
 }
 
@@ -140,7 +139,47 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 	std::cout << "Hay varias opciones para avanzar!" << std::endl;
 
-	/*MOSTRAR DATOS DE CADA JUGADA*/
+	Lista<NodoDeArbol<Jugada*>*>* hijosPosibles = nodoActual->devolverListaDeHijos();
+
+	hijosPosibles->iniciarCursor();
+	int numeroDeHijo = 1;
+	Jugada* jugadaActual;
+	NodoDeArbol<Jugada*>* nodoActual;
+	while(hijosPosibles->avanzarCursor()){
+
+		nodoActual =  hijosPosibles->obtenerCursor();
+		jugadaActual = nodoActual->devolverContenido();
+		Jugador quienJugo = jugadaActual->obtenerJugadorQueJugo();
+		Coordenada* modificada = jugadaActual->obtenerCasilleros()->obtener(1);
+
+		std::cout << std::endl << "La alternativa " << numeroDeHijo << " tiene:" << std::endl;
+
+		if ( jugadaActual->huboDestapados() ) {
+
+			if( jugadaActual->fueEliminado() ){
+
+				std::cout 	<< "Eliminacion del jugador " << quienJugo.consultarNombre() << std::endl
+							<< " por pisar la mina en columna " << modificada->obtenerCoordX()
+							<< " y fila " << modificada->obtenerCoordY()
+							<< "."
+							<< std::endl;
+
+			} else {
+				std::cout 	<< jugadaActual->obtenerCantidadDeCasillerosModificados()
+							<< " casilleros modificados por el jugador " << quienJugo.consultarNombre()
+							<< "."
+							<< std::endl;
+			}
+		} else {
+				std::cout 	<< "Colocacion de bandera en columna " << modificada->obtenerCoordX()
+							<< " y fila " << modificada->obtenerCoordY()
+							<< " por el jugador " << quienJugo.consultarNombre()
+							<< "."
+							<< std::endl;
+		}
+
+		numeroDeHijo++;
+	}
 
 	return pedirNumero("Que camino desea seguir?");
 }
@@ -159,7 +198,8 @@ void CondensadorDeFlujo::ejecutarJuego(){
 		juego->avanzarTurno();
 		if(huboCambios){
 			//Guardo en un nodo nuevo el estado actual de la partida
-			NodoDeArbol<Jugada>* aGuardar = new NodoDeArbol<Jugada>(nodoActual, jugadaActual);
+			Jugada* jugadaActual = juego->devolverJugada();
+			NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaActual);
 			agregarNodo(aGuardar);
 		}
 

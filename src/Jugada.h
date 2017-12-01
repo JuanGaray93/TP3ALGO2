@@ -45,7 +45,12 @@ public:
 	/*
 	 * Post Indica si los casilleros fueron destapados o se coloco una bandera
 	 */
-	bool casilleroDestapados();
+	bool huboDestapados();
+
+	/*
+	 *
+	 */
+	unsigned int obtenerCantidadDeCasillerosModificados();
 
 	/*
 	 * Post establece el jugador que realizo la jugada
@@ -66,6 +71,11 @@ public:
 	 * Post Establece si la jugada fue destapar casilleros o colocar bandera
 	 */
 	void establecerQueFueronDestapados(bool destapados);
+
+	/*
+	 *
+	 */
+	~Jugada();
 
 };
 
