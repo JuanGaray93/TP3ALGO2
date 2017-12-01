@@ -101,8 +101,7 @@ void Arbitro::retomarPosicionDelCursor(Jugador posicionDelCursor){
 	bool encontrado = false;
 	listaDeJugadores.iniciarCursor();
 	while(listaDeJugadores.avanzarCursor() && ! encontrado){
-		if(posicionDelCursor.consultarNumero() == listaDeJugadores.obtenerCursor().consultarNumero())
-			encontrado = true;
+		encontrado = posicionDelCursor.consultarNumero() == listaDeJugadores.obtenerCursor().consultarNumero();
 	}
 }
 
