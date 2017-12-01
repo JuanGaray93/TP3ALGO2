@@ -26,6 +26,7 @@ private:
 	int profundidadTotal;
 	Juego* juego;
 	bool sigueElJuego;
+	Jugada jugadaActual;
 
 public:
 
@@ -38,7 +39,7 @@ public:
 	 * Pre: El condensador existe
 	 * Post: El nodo
 	 */
-	void agregarNodo(NodoDeArbol<Jugada> nodoNuevo);
+	void agregarNodo(NodoDeArbol<Jugada>* nodoNuevo);
 
 	/* Pre: La cantidad de nodos a retroceder son menos que devolverProfundidadActual()
 	 *
@@ -62,14 +63,20 @@ public:
 	void ejecutarJuego(){
 
 		juego->avanzarTurno();
-		//Guardo en un nodo nuevo el estado actual de la partida
 
-		do{
+
+
+		while(sigueElJuego){
+
 			juego->declararTurno();
 			juego->tomarJugada();
 			juego->avanzarTurno();
+			//Guardo en un nodo nuevo el estado actual de la partida
+			NodoDeArbol<Jugada>* aGuardar = new NodoDeArbol<Jugada>(nodoActual, jugadaActual);
+			agregarNodo(aGuardar);
+			avanzar(1);
 			sigueElJuego = !(juego->terminoLaPartida());
-		} while(sigueElJuego);
+		};
 
 	}
 
@@ -91,8 +98,8 @@ CondensadorDeFlujo::CondensadorDeFlujo(){
 	sigueElJuego = true;
 }
 
-void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada> nodoNuevo){
-	nodoActual->asignarNuevoHijo(&nodoNuevo);
+void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada>* nodoNuevo){
+	nodoActual->asignarNuevoHijo(nodoNuevo);
 }
 
 
