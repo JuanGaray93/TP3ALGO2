@@ -95,7 +95,7 @@ public:
 
 
 CondensadorDeFlujo::CondensadorDeFlujo(){
-	raiz = NULL;
+	raiz = new NodoDeArbol<Jugada>(NULL);
 	cursor = raiz;
 	nodoActual = raiz;
 	juego = NULL;
