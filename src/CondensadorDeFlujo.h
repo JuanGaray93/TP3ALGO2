@@ -88,7 +88,7 @@ public:
 	/*
 	 *
 	 */
-	void preguntarQueHijoSeguir();
+	int preguntarQueHijoSeguir();
 
 
 };
@@ -137,8 +137,9 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
 }
 
-void CondensadorDeFlujo::preguntarQueHijoSeguir(){
+int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 	//preguntar numero (copiar metodo)
+	return 1;
 }
 
 int CondensadorDeFlujo::devolverProfundidadActual(){

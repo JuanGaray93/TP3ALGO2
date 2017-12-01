@@ -88,7 +88,6 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 
 template <class T>
 NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido){
-	hijos = new Lista<NodoDeArbol>;
 	padre = padreNuevo;
 	contenido = new T;
 	*contenido = nuevoContenido;
@@ -114,7 +113,7 @@ void NodoDeArbol<T>::asignarNuevoHijo(NodoDeArbol* nuevoHijo){
 
 template <class T>
 int NodoDeArbol<T>::devolverCantidadDeHijos(){
-	return ( hijos->contarElementos() );
+	return ( hijos.contarElementos() );
 }
 
 template <class T>
@@ -124,7 +123,7 @@ T NodoDeArbol<T>::devolverContenido(){
 
 template <class T>
 NodoDeArbol<T>* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
-	return &(hijos->obtener(numeroDeHijo));
+	return hijos.obtener(numeroDeHijo);
 }
 
 template <class T>
