@@ -87,7 +87,7 @@ void Presentador::pedirNombresDeJugadores(){
 		while(! estaseguro){
 			std::cout 	<< "Ingrese el nombre del jugador "
 						<<  (numeroDeNombre + 1)
-						<< " (hta 7 caracteres): ";
+						<< " (hasta 7 caracteres): ";
 
 			std::cin 	>> nombreDeJugador;
 

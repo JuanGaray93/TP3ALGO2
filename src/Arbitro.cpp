@@ -27,15 +27,15 @@ int Arbitro::devolverPuntaje(){
 
 void Arbitro::avanzarTurno(bool fueEliminado){
 	if (! fueEliminado && (actual.consultarNumero() != 0)){
-			colaDeJugadores.acolar(actual);
+			actual = listaDeJugadores.obtenerCursor();
 	}
-	actual = colaDeJugadores.desacolar();
+	if(!listaDeJugadores.avanzarCursor()) listaDeJugadores.iniciarCursor();
 }
 
 void Arbitro::inicializarListaDeJugadores(std::string* nombres, int cantidadJugadores){
 	for(int i = 0; i < cantidadJugadores; i++){
         Jugador jugador(nombres[i], i + 1);
-        colaDeJugadores.acolar(jugador);
+        listaDeJugadores.agregar(jugador);
 	}
 }
 
@@ -45,7 +45,7 @@ int Arbitro::devolverNumeroDeTurno(){
 }
 
 bool Arbitro::quedaUno(){
-	return (colaDeJugadores.estaVacia());
+	return (listaDeJugadores.estaVacia());
 }
 
 void Arbitro::anunciarGanador(){
@@ -53,9 +53,9 @@ void Arbitro::anunciarGanador(){
 	Jugador ganador = actual;
 	Jugador posibleGanador;
 
-	while(! colaDeJugadores.estaVacia() ){
+	while(! listaDeJugadores.avanzarCursor() ){
 
-		posibleGanador = colaDeJugadores.desacolar();
+		posibleGanador = listaDeJugadores.obtenerCursor();
 
 		if (posibleGanador.consultarPuntaje() > puntajeMaximo ){
 			ganador = posibleGanador;
@@ -70,6 +70,51 @@ void Arbitro::anunciarGanador(){
 			  << " puntos!"
 			  << std::endl;
 }
+
+void Arbitro::inicializarCursor(){
+	listaDeJugadores.iniciarCursor();
+	listaDeJugadores.avanzarCursor();
+}
+
+void Arbitro::revivirJugador(Jugador jugadorARevivir){
+
+	Jugador siguienteAJugar = listaDeJugadores.obtenerCursor();
+	listaDeJugadores.iniciarCursor();
+	bool seRevivioJugador = false;
+	int posicion = 1;
+	while(listaDeJugadores.avanzarCursor()){
+		Jugador jugadorAComparar = listaDeJugadores.obtenerCursor();
+		if(jugadorARevivir.consultarNumero() < jugadorAComparar.consultarNumero()){
+			listaDeJugadores.agregar(jugadorARevivir, posicion);
+			seRevivioJugador = true;
+		}
+		posicion++;
+	}
+	if(!seRevivioJugador) listaDeJugadores.agregar(jugadorARevivir);
+
+	retomarPosicionDelCursor(siguienteAJugar);
+
+
+}
+
+void Arbitro::retomarPosicionDelCursor(Jugador posicionDelCursor){
+	bool encontrado = false;
+	listaDeJugadores.iniciarCursor();
+	while(listaDeJugadores.avanzarCursor() && ! encontrado){
+		if(posicionDelCursor.consultarNumero() == listaDeJugadores.obtenerCursor().consultarNumero())
+			encontrado = true;
+	}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

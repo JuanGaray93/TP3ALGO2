@@ -10,7 +10,6 @@ class Jugada{
 private:
 	Jugador quienJugo;
 	bool eliminado;
-	int posicionDelEliminado;
 	Lista<Coordenada> casillerosModificados;
 	bool fueronDestapados;
 
@@ -22,25 +21,50 @@ public:
 
 	Jugada();
 
+	/*
+	 * Post Si el jugador no fue seteado devuelve un jugador inicializado vacio
+	 * de otra forma devuelve el jugador que realizo la jugada
+	 */
 	Jugador obtenerJugadorQueJugo();
 
+	/*
+	 * Post devuelve si el jugador de la jugada fue eliminado
+	 */
 	bool fueEliminado();
 
+	/*
+	 * Post Devuelve el numero del jugador, correspondiente con el orden en la cola
+	 */
 	int obtenerPosicionDelEliminado();
 
+	/*
+	 * Post Devuelve las coordenadas en la cual fue se altero/alteraron el/los casilleros
+	 */
 	Lista<Coordenada> obtenerCasilleros();
 
+	/*
+	 * Post Indica si los casilleros fueron destapados o se coloco una bandera
+	 */
 	bool casilleroDestapados();
 
-
+	/*
+	 * Post establece el jugador que realizo la jugada
+	 */
 	void establecerQuienJugo(Jugador quienJugo);
 
+	/*
+	 * Post establece la condicion de si el jugador fue eliminado o no
+	 */
 	void establecerQueFueEliminado(bool eliminado);
 
-	void establecerPosicionEliminado(int posicion);
-
+	/*
+	 * Post Agrega coordenada a la lista
+	 */
 	void agregarCasilleroModificado(Coordenada casilleros);
 
+	/*
+	 * Post Establece si la jugada fue destapar casilleros o colocar bandera
+	 */
 	void establecerFueronDestapados(bool destapados);
 
 };

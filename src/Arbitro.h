@@ -8,7 +8,7 @@
 #ifndef ARBITRO_H_
 #define ARBITRO_H_
 
-#include "Cola.h"
+#include "Lista.h"
 #include "Jugador.h"
 
 class Arbitro{
@@ -17,13 +17,19 @@ private:
 
 	int dificultad;
 
-	Cola<Jugador> colaDeJugadores;
+	Lista<Jugador> listaDeJugadores;
 	Jugador actual;
 
 	/*
 	 * Post: inicializa la lista de jugadores con los jugadores creados
 	 */
 	void inicializarListaDeJugadores(std::string* nombres, int cantidadJugadores);
+
+	/*
+	 * Pre la lista fue inicializada durante el juego
+	 * Post deja el cursor apuntando al jugador que le corresponde jugar
+	 */
+	void retomarPosicionDelCursor(Jugador posicionDelCursor);
 
 public:
 
@@ -76,6 +82,18 @@ public:
 	 *Post Anuncia el ganador de la partida
 	 */
 	void anunciarGanador();
+
+	/*
+	 * Pre la lista de jugadores no fue iniciada previamente
+	 * Post inicia el cursor y lo deja sobre el primero de la lista
+	 */
+	void inicializarCursor();
+
+	/*
+	 * Pre: Se volvio al pasado y un jugador fue eliminado
+	 * Post: Revive al jugador eliminado
+	 */
+	void revivirJugador(Jugador jugadorARevivir);
 };
 
 
