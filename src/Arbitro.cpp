@@ -11,6 +11,7 @@
 Arbitro::Arbitro(std::string* nombresDeJugadores, int numeroDeJugadores, int dificultadPedida){
 	this->dificultad = dificultadPedida;
 	this->inicializarListaDeJugadores(nombresDeJugadores, numeroDeJugadores);
+	posicionCursor = 0;
 }
 
 Jugador Arbitro::devolverJugador(){
@@ -26,10 +27,14 @@ int Arbitro::devolverPuntaje(){
 }
 
 void Arbitro::avanzarTurno(bool fueEliminado){
-	if (! fueEliminado && (actual.consultarNumero() != 0)){
-			actual = listaDeJugadores.obtenerCursor();
+	if (fueEliminado){
+		Jugador posicionDelCursor = listaDeJugadores.obtenerCursor();
+		listaDeJugadores.remover(posicionCursor);
+		retomarPosicionDelCursor(posicionDelCursor);
 	}
-	if(!listaDeJugadores.avanzarCursor()) listaDeJugadores.iniciarCursor();
+	posicionCursor++;
+	if(!listaDeJugadores.avanzarCursor()) inicializarCursor();
+	actual = listaDeJugadores.obtenerCursor();
 }
 
 void Arbitro::inicializarListaDeJugadores(std::string* nombres, int cantidadJugadores){
@@ -74,6 +79,7 @@ void Arbitro::anunciarGanador(){
 void Arbitro::inicializarCursor(){
 	listaDeJugadores.iniciarCursor();
 	listaDeJugadores.avanzarCursor();
+	posicionCursor = 1;
 }
 
 void Arbitro::revivirJugador(Jugador jugadorARevivir){
@@ -100,8 +106,10 @@ void Arbitro::revivirJugador(Jugador jugadorARevivir){
 void Arbitro::retomarPosicionDelCursor(Jugador posicionDelCursor){
 	bool encontrado = false;
 	listaDeJugadores.iniciarCursor();
+	posicionCursor = 1;
 	while(listaDeJugadores.avanzarCursor() && ! encontrado){
 		encontrado = posicionDelCursor.consultarNumero() == listaDeJugadores.obtenerCursor().consultarNumero();
+		posicionCursor++;
 	}
 }
 
