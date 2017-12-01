@@ -80,7 +80,7 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
 	padre = padreNuevo;
 	contenido = NULL;
 	if (padre != NULL){
-		profundidad = padre->devolverProfundidad();
+		profundidad = padre->devolverProfundidad() + 1;
 	} else {
 		profundidad = 1;
 	}
@@ -93,7 +93,7 @@ NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido){
 	contenido = new T;
 	*contenido = nuevoContenido;
 	if (padre != NULL){
-			profundidad = padre->devolverProfundidad();
+			profundidad = padre->devolverProfundidad() + 1;
 	} else {
 		profundidad = 1;
 	}

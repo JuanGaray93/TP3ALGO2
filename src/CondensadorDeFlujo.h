@@ -23,7 +23,6 @@ private:
 	NodoDeArbol<Jugada>* raiz;
 	NodoDeArbol<Jugada>* cursor;
 	NodoDeArbol<Jugada>* nodoActual;
-	int profundidadTotal;
 	Juego* juego;
 	bool sigueElJuego;
 	Jugada jugadaActual;
@@ -54,13 +53,11 @@ public:
 	/*
 	 *
 	 */
-	int devolverProfundidadTotal();
+	int devolverProfundidadActual();
 
 	/*
 	 *
 	 */
-	int devolverProfundidadActual();
-
 	void ejecutarJuego(){
 
 		juego->avanzarTurno();
@@ -81,10 +78,17 @@ public:
 
 	}
 
-
+	/*
+	 *
+	 */
 	void inicializarJuego(int dificultad, int numeroDeJugadores, int filas, int columnas, std::string* nombresDeJugadores){
 		juego = new Juego(dificultad, numeroDeJugadores, filas, columnas, nombresDeJugadores);
 	}
+
+	/*
+	 *
+	 */
+	void preguntarQueHijoSeguir();
 
 
 };
@@ -94,7 +98,6 @@ CondensadorDeFlujo::CondensadorDeFlujo(){
 	raiz = NULL;
 	cursor = raiz;
 	nodoActual = raiz;
-	profundidadTotal = 1;
 	juego = NULL;
 	sigueElJuego = true;
 	huboCambios = false;
@@ -113,14 +116,30 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 
 void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
+	int nodosPosibles = nodoActual->devolverCantidadDeHijos();
+
+	/* Probablemente se pueda optimizar o emprolijar  */
+	if(nodosPosibles != 0){
+		/*SUMAR CAMBIOS SOBRE JUEGO*/
+		int hijoASeguir;
+
+		if( nodosPosibles > 1 ){
+
+			hijoASeguir = preguntarQueHijoSeguir();
+			nodoActual = nodoActual->devolverHijo(hijoASeguir);
+			avanzar(cantidadDeNodos - 1);
+
+		} else if (nodosPosibles == 1){
+			nodoActual = nodoActual->devolverHijo(1);
+		}
+	}
+
 
 }
 
-
-int CondensadorDeFlujo::devolverProfundidadTotal(){
-	return profundidadTotal;
+void CondensadorDeFlujo::preguntarQueHijoSeguir(){
+	//preguntar numero (copiar metodo)
 }
-
 
 int CondensadorDeFlujo::devolverProfundidadActual(){
 	return nodoActual->devolverProfundidad();
