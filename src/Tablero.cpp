@@ -183,6 +183,27 @@ bool Tablero::noQuedanCasilleros(){
 }
 
 
+//METODOS PARA DESHACER JUGADAS
+
+
+
+
+void Tablero::taparCasilleros(Lista<Coordenada*>* casilleros){
+	casilleros->iniciarCursor();
+	while (casilleros->avanzarCursor()){
+		Coordenada* actual = casilleros->obtenerCursor();
+		(matriz[ actual->obtenerCoordX() ][ actual->obtenerCoordY() ])->tapar();
+	}
+}
+
+
+
+
+
+
+
+
+
 Tablero::~Tablero(){
 	for(int columna = 0; columna < columnaMaxima; columna++ ){
 		for(int fila = 0; fila < filaMaxima; fila++){
@@ -190,7 +211,6 @@ Tablero::~Tablero(){
 				delete matriz[columna][fila];
 			}
 		}
-		delete matriz[columna];
 	}
 	delete [] matriz;
 }

@@ -58,6 +58,15 @@ class Casillero{
 	  */
 	 void destapar();
 
+	 //Para deshacer jugadas
+
+	 /*
+	  * Post: El casillero pasa a estar cubierto nuevamente.
+	  */
+	 void tapar();
+
+
+
 	 /*
 	  * Post: Libera los recursos asociados, especificalente los pedidos para la bandera
 	  */

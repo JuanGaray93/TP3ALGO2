@@ -51,6 +51,14 @@ void Casillero::destapar(){
 	this->esVisible = true;
 }
 
+//Para deshacer jugada
+
+void Casillero::tapar(){
+	this->esVisible = false;
+}
+
+
+
 Casillero::~Casillero(){
 	if (bandera != 0){
 		delete bandera;

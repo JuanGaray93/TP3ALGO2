@@ -27,6 +27,8 @@ Juego::Juego(int dificultad, int numeroDeJugadores, int filas, int columnas, std
 
 	this->dibujante->dibujarTablero();
 
+	this->jugadaActual = NULL;
+
 
 }
 
@@ -80,7 +82,7 @@ int Juego::tomarTipoDeJugada(){
 	std::string mensajeDeOpciones = pedido + opcion1 + opcion2;
 
 	int tipoDeJugada = pedirNumero(mensajeDeOpciones, 2);
-	this->jugadaActual.establecerFueronDestapados(tipoDeJugada == 2);
+	this->jugadaActual->establecerQueFueronDestapados(tipoDeJugada == 2);
 	return tipoDeJugada;
 }
 
@@ -94,6 +96,7 @@ void Juego::tomarJugada(){
 	bool haJugado = false;
 	int opcionElegida;
 	int jugadorActual;
+	jugadaActual = new Jugada;
 
 	while (! haJugado){
 
@@ -129,8 +132,8 @@ void Juego::avanzarTurno(){
 	}
 
 	arbitro->avanzarTurno(seDebeEliminarJugador);
-	this->jugadaActual.establecerQuienJugo(this->arbitro->devolverJugador());
-	this->jugadaActual.establecerQueFueEliminado(seDebeEliminarJugador);
+	this->jugadaActual->establecerQuienJugo(this->arbitro->devolverJugador());
+	this->jugadaActual->establecerQueFueEliminado(seDebeEliminarJugador);
 	seDebeEliminarJugador = false;
 }
 
@@ -176,8 +179,8 @@ void Juego::cambiarBandera(int jugadorActual){
 	int puntaje = arbitro->devolverPuntaje();
 	this->dibujante->cambiarPuntaje( puntaje, jugadorActual );
 	this->dibujante->cambiarCuadrante(columnaDeJugada, filaDeJugada, queDibujar, jugadorActual, false);
-	Coordenada coordenada(this->filaDeJugada, this->columnaDeJugada);
-	this->jugadaActual.agregarCasilleroModificado(coordenada);
+	Coordenada* coordenada = new Coordenada(this->columnaDeJugada, this->filaDeJugada);
+	this->jugadaActual->agregarCasilleroModificado(coordenada);
 }
 
 void Juego::descubrirCasillero(int columnaDeCasillero, int filaDeCasillero, int jugadorActual){
@@ -203,6 +206,8 @@ void Juego::descubrirCasillero(int columnaDeCasillero, int filaDeCasillero, int 
 			descubrirCasillerosCircundantes(columnaDeCasillero, filaDeCasillero);
 		}
 	}
+	Coordenada* descubierta = new Coordenada(columnaDeCasillero, filaDeCasillero);
+	this->jugadaActual->agregarCasilleroModificado(descubierta);
 	this->dibujante->cambiarCuadrante(columnaDeCasillero, filaDeCasillero, queDibujar, jugadorActual, false);
 }
 
@@ -213,11 +218,10 @@ void Juego::descubrirCasillerosCircundantes(int columnaDeCasillero, int filaDeCa
 
 			int columnaAEvaluar = columnaDeCasillero + dColumna;
 			int filaAEvaluar = filaDeCasillero + dFila;
-			Coordenada descubierta(filaAEvaluar, columnaAEvaluar);
+
 
 			if ((tablero.esCoordenadaValida(columnaAEvaluar,filaAEvaluar)) && (! tablero.estaDescubierto(columnaAEvaluar, filaAEvaluar)) ){
 				//Llamada recursiva entre el metodo actual y descubrirCasillero.
-				this->jugadaActual.agregarCasilleroModificado(descubierta);
 				descubrirCasillero(columnaAEvaluar, filaAEvaluar, 0);
 			}
 		}
@@ -242,13 +246,10 @@ std::string Juego::hacerCadena(int numero){
 	return ossnumero.str();
 }
 
-Jugada Juego::devolverJugada(){
+Jugada* Juego::devolverJugada(){
 	return this->jugadaActual ;
 }
 
-void Juego::resetearJugada(){
-	this->jugadaActual = Jugada();
-}
 Juego::~Juego(){
 	delete dibujante;
 	delete arbitro;

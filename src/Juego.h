@@ -38,7 +38,7 @@ class Juego{
 	int columnaDeJugada;
 	bool seDebeEliminarJugador;
 
-	Jugada jugadaActual;
+	Jugada* jugadaActual;
 
 
 
@@ -124,13 +124,7 @@ class Juego{
 	/*
 	 * Post devuelve la jugada creada, y inicializa nuevamente la jugada
 	 */
-	Jugada devolverJugada();
-
-	/*
-	 * Post reinicia a las condiciones iniciales la jugadaActual
-	 */
-
-	void resetearJugada();
+	Jugada* devolverJugada();
 
 	/*
 	 * Post: Devuelve una std::string con el numero que se le paso

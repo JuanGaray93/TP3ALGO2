@@ -11,6 +11,10 @@
 #include <iostream>
 #include "Casillero.h"
 
+#include "Lista.h"
+#include "Coordenada.h"
+
+
 class Tablero{
 
   private:
@@ -136,6 +140,19 @@ class Tablero{
 	 *Post: Indica si el casillero esta destapado
 	 */
 	bool estaDescubierto( int columna, int fila);
+
+
+	//DESHACER JUGADAS
+
+	void taparCasilleros(Lista<Coordenada*>* casilleros);
+
+
+
+
+
+
+
+
 
 	/*
 	 * Destructor

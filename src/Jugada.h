@@ -10,13 +10,13 @@ class Jugada{
 private:
 	Jugador quienJugo;
 	bool eliminado;
-	Lista<Coordenada> casillerosModificados;
+	Lista<Coordenada*>* casillerosModificados;
 	bool fueronDestapados;
 
 public:
 
 	/*
-	 * Post inicializa la jugada con todo vacio
+	 * Post inicializa la jugada con datos nulos
 	 */
 
 	Jugada();
@@ -40,7 +40,7 @@ public:
 	/*
 	 * Post Devuelve las coordenadas en la cual fue se altero/alteraron el/los casilleros
 	 */
-	Lista<Coordenada> obtenerCasilleros();
+	Lista<Coordenada*>* obtenerCasilleros();
 
 	/*
 	 * Post Indica si los casilleros fueron destapados o se coloco una bandera
@@ -60,12 +60,12 @@ public:
 	/*
 	 * Post Agrega coordenada a la lista
 	 */
-	void agregarCasilleroModificado(Coordenada casilleros);
+	void agregarCasilleroModificado(Coordenada* casilleros);
 
 	/*
 	 * Post Establece si la jugada fue destapar casilleros o colocar bandera
 	 */
-	void establecerFueronDestapados(bool destapados);
+	void establecerQueFueronDestapados(bool destapados);
 
 };
 
