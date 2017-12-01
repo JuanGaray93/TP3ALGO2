@@ -16,6 +16,8 @@
 #include "Dibujante.h"
 #include "Jugador.h"
 #include "Tablero.h"
+#include "Jugada.h"
+#include "Coordenada.h"
 
 class Juego{
 
@@ -36,7 +38,7 @@ class Juego{
 	int columnaDeJugada;
 	bool seDebeEliminarJugador;
 
-
+	Jugada jugadaActual;
 
 
 
@@ -119,7 +121,16 @@ class Juego{
 	 */
 	bool terminoLaPartida();
 
+	/*
+	 * Post devuelve la jugada creada, y inicializa nuevamente la jugada
+	 */
+	Jugada devolverJugada();
 
+	/*
+	 * Post reinicia a las condiciones iniciales la jugadaActual
+	 */
+
+	void resetearJugada();
 
 	/*
 	 * Post: Devuelve una std::string con el numero que se le paso
