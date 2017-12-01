@@ -6,8 +6,7 @@
  */
 
 
-#include "Dibujante.h"
-#include "Juego.h"
+#include "CondensadorDeFlujo.h"
 #include "Presentador.h"
 
 
@@ -18,24 +17,15 @@ int main(){
 	Presentador presentador;
 
 	while(jugarDeNuevo){
-
+		CondensadorDeFlujo condensador;
 		finDeLaPartida = false;
-
 		presentador.pedirDatosDeJuego();
-
-		Juego juego( 	 presentador.devolverDificultad(),
-						 presentador.devolverNumeroDeJugadores(),
-						 presentador.devolverFilas(),
-						 presentador.devolverColumnas(),
-			       		 presentador.devolverNombresDeLosJugadores() );
-
-		juego.avanzarTurno();
-		do{
-			juego.declararTurno();
-			juego.tomarJugada();
-			juego.avanzarTurno();
-			finDeLaPartida = juego.terminoLaPartida();
-		}while(! finDeLaPartida);
+		condensador.inicializarJuego(	presentador.devolverDificultad(),
+										presentador.devolverNumeroDeJugadores(),
+										presentador.devolverFilas(),
+										presentador.devolverColumnas(),
+										presentador.devolverNombresDeLosJugadores() );
+		condensador.ejecutarJuego();
 		presentador.consultarSiJugarDeNuevo();
 		jugarDeNuevo = presentador.devolverSiJugarDeNuevo();
 	}

@@ -8,31 +8,37 @@
 #ifndef CONDENSADORDEFLUJO_H_
 #define CONDENSADORDEFLUJO_H_
 
+#ifndef NULL
+#define NULL 0
+
 
 #include "NodoDeArbol.h"
 #include "Lista.h"
+#include "Juego.h"
+#include "Jugada.h"
 
-template <class T>
 class CondensadorDeFlujo{
 
 private:
-	NodoDeArbol<T>* raiz;
-	NodoDeArbol<T>* cursor;
-	NodoDeArbol<T>* nodoActual;
+	NodoDeArbol<Jugada>* raiz;
+	NodoDeArbol<Jugada>* cursor;
+	NodoDeArbol<Jugada>* nodoActual;
 	int profundidadTotal;
+	Juego* juego;
+	bool sigueElJuego;
 
 public:
 
 	/*
 	 * Post:
 	 */
-	CondensadorDeFlujo(T nodoInicial);
+	CondensadorDeFlujo();
 
 	/*
 	 * Pre: El condensador existe
 	 * Post: El nodo
 	 */
-	void agregarNodo(T nodoNuevo);
+	void agregarNodo(NodoDeArbol<Jugada> nodoNuevo);
 
 	/* Pre: La cantidad de nodos a retroceder son menos que devolverProfundidadActual()
 	 *
@@ -53,44 +59,63 @@ public:
 	 */
 	int devolverProfundidadActual();
 
+	void ejecutarJuego(){
+
+		juego->avanzarTurno();
+		//Guardo en un nodo nuevo el estado actual de la partida
+
+		do{
+			juego->declararTurno();
+			juego->tomarJugada();
+			juego->avanzarTurno();
+			sigueElJuego = !(juego->terminoLaPartida());
+		} while(sigueElJuego);
+
+	}
+
+
+	void inicializarJuego(int dificultad, int numeroDeJugadores, int filas, int columnas, std::string* nombresDeJugadores){
+		juego = new Juego(dificultad, numeroDeJugadores, filas, columnas, nombresDeJugadores);
+	}
+
 
 
 
 };
 
 
-template <class T>
-CondensadorDeFlujo<T>::CondensadorDeFlujo(T nodoInicial){
-	raiz = new NodoDeArbol<T>(nodoInicial);
+CondensadorDeFlujo::CondensadorDeFlujo(){
+	raiz = NULL;
 	cursor = raiz;
 	nodoActual = raiz;
 	profundidadTotal = 1;
+	juego = NULL;
+	sigueElJuego = true;
 }
 
-template <class T>
-void CondensadorDeFlujo<T>::agregarNodo(T nodoNuevo){
+void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada> nodoNuevo){
 	nodoActual->asignarNuevoHijo(nodoNuevo);
 }
 
-template <class T>
-void CondensadorDeFlujo<T>::retroceder(int cantidadDeNodos){
+
+void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 
 
 }
 
-template <class T>
-void CondensadorDeFlujo<T>::avanzar(int cantidadDeNodos){
+
+void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
 
 }
 
-template <class T>
-int CondensadorDeFlujo<T>::devolverProfundidadTotal(){
+
+int CondensadorDeFlujo::devolverProfundidadTotal(){
 	return profundidadTotal;
 }
 
-template <class T>
-int CondensadorDeFlujo<T>::devolverProfundidadActual(){
+
+int CondensadorDeFlujo::devolverProfundidadActual(){
 	return nodoActual->devolverProfundidad();
 }
 
@@ -103,4 +128,6 @@ int CondensadorDeFlujo<T>::devolverProfundidadActual(){
 
 
 
+
+#endif /* NULL */
 #endif /* CONDENSADORDEFLUJO_H_ */

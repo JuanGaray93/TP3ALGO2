@@ -61,7 +61,7 @@ public:
 	 * 		NumeroDeHijo esta entre 1 y devolverCantidadDeHijos()
 	 * Post: Devuelve direccion del nodo del hijo pedido.
 	 */
-	NodoDeArbol* devolverHijo(int numeroDeHijo);
+	NodoDeArbol<T>* devolverHijo(int numeroDeHijo);
 
 	/*
 	 * Post: informa si el nodo de arbol tiene padre (si no lo tiene, es raiz)
@@ -124,7 +124,7 @@ T NodoDeArbol<T>::devolverContenido(){
 }
 
 template <class T>
-NodoDeArbol* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
+NodoDeArbol<T>* NodoDeArbol<T>::devolverHijo(int numeroDeHijo){
 	return &(hijos->obtener(numeroDeHijo));
 }
 
