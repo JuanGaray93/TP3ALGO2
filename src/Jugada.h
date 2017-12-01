@@ -5,16 +5,14 @@
 #include "Jugador.h"
 #include "Lista.h"
 #include "Coordenada.h"
-#include "Bandera.h"
 
 class Jugada{
 private:
 	Jugador quienJugo;
 	bool eliminado;
 	int posicionDelEliminado;
-	Lista<Coordenada>* casillerosModificados;
+	Lista<Coordenada> casillerosModificados;
 	bool fueronDestapados;
-	Bandera* banderaColocada;
 
 public:
 
@@ -24,23 +22,20 @@ public:
 
 	Jugada();
 
-
-
 	Jugador obtenerJugadorQueJugo();
 
 	bool fueEliminado();
 
 	int obtenerPosicionDelEliminado();
 
-	Lista<Coordenada>* obtenerCasilleros();
+	Lista<Coordenada> obtenerCasilleros();
 
 	bool casilleroDestapados();
 
-	Bandera* obtenerBanderaColocada();
 
 	void establecerQuienJugo(Jugador quienJugo);
 
-	void establecerQueFueEliminado();
+	void establecerQueFueEliminado(bool eliminado);
 
 	void establecerPosicionEliminado(int posicion);
 
@@ -48,7 +43,6 @@ public:
 
 	void establecerFueronDestapados(bool destapados);
 
-	void establecerBanderaColocada(Bandera* bandera);
 };
 
 
