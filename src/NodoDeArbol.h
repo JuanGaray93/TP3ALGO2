@@ -13,7 +13,7 @@ template <class T>
 class NodoDeArbol{
 
 private:
-	Lista<NodoDeArbol>* hijos;
+	Lista<NodoDeArbol*> hijos;
 	NodoDeArbol* padre;
 	T* contenido;
 	int profundidad;
@@ -42,7 +42,7 @@ public:
 	 * Pre: El nodo existe
 	 * Post: El nodo tiene de hijo el nodo pasado
 	 */
-	void asignarNuevoHijo(NodoDeArbol nuevoHijo);
+	void asignarNuevoHijo(NodoDeArbol* nuevoHijo);
 
 	/*
 	 * Pre: El nodo existe
@@ -77,7 +77,6 @@ public:
 
 template <class T>
 NodoDeArbol<T>::NodoDeArbol(NodoDeArbol* padreNuevo){
-	hijos = new Lista<NodoDeArbol>;
 	padre = padreNuevo;
 	contenido = NULL;
 	if (padre != NULL){
@@ -109,8 +108,8 @@ void NodoDeArbol<T>::asignarContenido(T nuevoContenido){
 }
 
 template <class T>
-void NodoDeArbol<T>::asignarNuevoHijo(NodoDeArbol nuevoHijo){
-	hijos->agregar(nuevoHijo);
+void NodoDeArbol<T>::asignarNuevoHijo(NodoDeArbol* nuevoHijo){
+	hijos.agregar(nuevoHijo);
 }
 
 template <class T>

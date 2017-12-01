@@ -13,12 +13,10 @@
 int main(){
 
 	bool jugarDeNuevo = true;
-	bool finDeLaPartida;
 	Presentador presentador;
 
 	while(jugarDeNuevo){
 		CondensadorDeFlujo condensador;
-		finDeLaPartida = false;
 		presentador.pedirDatosDeJuego();
 		condensador.inicializarJuego(	presentador.devolverDificultad(),
 										presentador.devolverNumeroDeJugadores(),

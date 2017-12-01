@@ -1,7 +1,7 @@
 
 #ifndef BANDERA_H
 #define BANDERA_H
-#endif
+
 
 class Bandera{
 private:
@@ -28,3 +28,5 @@ public:
 	 */
 	void colocarBandera(int colocadaPor);
 };
+
+#endif

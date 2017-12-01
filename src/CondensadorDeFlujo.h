@@ -94,7 +94,7 @@ CondensadorDeFlujo::CondensadorDeFlujo(){
 }
 
 void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada> nodoNuevo){
-	nodoActual->asignarNuevoHijo(nodoNuevo);
+	nodoActual->asignarNuevoHijo(&nodoNuevo);
 }
 
 
