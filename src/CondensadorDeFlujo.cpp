@@ -31,18 +31,27 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 		Jugador* quienJugo = jugadaADeshacer->obtenerQuienJugo();
 		Lista<Coordenada*>* casillerosAfectados = jugadaADeshacer->obtenerCasilleros();
 
-		if (! jugadaADeshacer->huboDestapados() ){ //Fue colocar-quitar bandera
+		//Si no se destapo ningun casillero es que se hizo una jugada de bandera.
+		//DESHACER JUGADA DE BANDERA
+		if ( ! jugadaADeshacer->huboDestapados() ){
 			Coordenada* coordenadaDeJuego = casillerosAfectados->obtener(1);
 			juego->rehacerJugadaBandera(coordenadaDeJuego, quienJugo);
+
+		//DESHACER DESTAPE DE CASILLEROS
 		} else {
 			juego->taparCasilleros(casillerosAfectados);
+			//REVIVIR
+			if ( jugadaADeshacer->fueEliminado() ){
+				juego->revivirJugador(quienJugo);
+			}
 		}
 
-		if ( jugadaADeshacer->fueEliminado() ){
-			juego->revivirJugador(quienJugo);
-		} else {
-			juego->restablecerPuntaje(quienJugo);
-		}
+		//RESTAURO PUNTAJE
+		juego->restablecerPuntaje(quienJugo);
+
+		//RETROCEDER TURNO ( TODO )
+		//juego->retrocederTurno();
+
 
 		nodoActual = nodoActual->devolverPadre();
 		retroceder(cantidadDeNodos-1);
