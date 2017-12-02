@@ -24,6 +24,7 @@ class Dibujante{
 	std::string bandera;
 	std::string casilleroCubierto;
 	std::string margen;
+	std::string eliminado;
 
 	int columnasMinimasImagen;
 
@@ -103,6 +104,16 @@ class Dibujante{
 	 *Post convierte en string un tipo de dato int
 	 */
 	std::string hacerCadena(int numero);
+
+	/*
+	 *
+	 */
+	void revivirJugador(int nroJugador);
+
+	/*
+	 *
+	 */
+	~Dibujante();
 
 };
 

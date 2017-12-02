@@ -17,6 +17,7 @@ Dibujante::Dibujante(int cantidadDeColumnas, int cantidadDeFilas, int cantidadDe
 	bandera = "bandera";
 	casilleroCubierto = "cubierto";
 	margen = "margen";
+	eliminado = "eliminado";
 
 	numeroDeDibujo = 1;
 	columnasMinimasImagen = 18;
@@ -224,17 +225,13 @@ void Dibujante::dibujarTablero(){
 }
 
 void Dibujante::eliminarJugador(int nroJugador){
-
 	int filaDelJugador = filasDelTablero + 2 * nroJugador + filasMargenSuperior;
-	int yInicial = alturaDeCuadrante * filaDelJugador + alturaDeCuadrante / 2;
-	int yMax = yInicial + alturaDeCuadrante / 8;
-	int xMax = columnasMinimasImagen * anchoDeCuadrante;
+	cambiarCuadrante( 0, filaDelJugador, eliminado, 0, true);
+}
 
-	for(int xDePixel = 0; xDePixel <  xMax; xDePixel++ ){
-		for(int yDePixel = yInicial; yDePixel <  yMax; yDePixel++ ){
-			imagen(xDePixel, yDePixel)->Red = 150;
-		}
-	}
+void Dibujante::revivirJugador(int nroJugador){
+	int filaDelJugador = filasDelTablero + 2 * nroJugador + filasMargenSuperior;
+	cambiarCuadrante( 0, filaDelJugador, margen, 0, true);
 }
 
 std::string Dibujante::hacerCadena(int numero){
@@ -242,3 +239,18 @@ std::string Dibujante::hacerCadena(int numero){
 	ossnumero << numero;
 	return ossnumero.str();
 }
+
+Dibujante::~Dibujante(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
