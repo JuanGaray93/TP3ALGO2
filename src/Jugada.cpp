@@ -5,11 +5,12 @@ Jugada::Jugada(){
 	this->eliminado = false;
 	this->fueronDestapados = false;
 	this->casillerosModificados = new Lista<Coordenada*>;
+	this->quienJugo = new Jugador;
 }
 
 //GET
 
-Jugador Jugada::obtenerJugadorQueJugo(){
+Jugador* Jugada::obtenerQuienJugo(){
 	return this->quienJugo;
 }
 
@@ -18,7 +19,7 @@ bool Jugada::fueEliminado(){
 }
 
 int Jugada::obtenerPosicionDelEliminado(){
-	return this->quienJugo.consultarNumero();
+	return quienJugo->consultarNumero();
 }
 
 Lista<Coordenada*>* Jugada::obtenerCasilleros(){
@@ -36,8 +37,8 @@ unsigned int Jugada::obtenerCantidadDeCasillerosModificados(){
 
 //SET
 
-void Jugada::establecerQuienJugo(Jugador quienJugo){
-	this->quienJugo = quienJugo;
+void Jugada::establecerQuienJugo(Jugador aEstablecer){
+	*quienJugo = aEstablecer;
 }
 
 void Jugada::establecerQueFueEliminado(bool eliminado){

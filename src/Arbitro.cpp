@@ -118,7 +118,11 @@ void Arbitro::restablecerPuntaje(Jugador* quien){
 	 */
 }
 
-
+Arbitro::~Arbitro(){
+	/*
+	 *
+	 */
+}
 
 
 

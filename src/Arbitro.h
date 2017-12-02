@@ -99,7 +99,7 @@ public:
 	/*
 	 *
 	 */
-	void Arbitro::restablecerPuntaje(Jugador* quien);
+	void restablecerPuntaje(Jugador* quien);
 
 	/*
 	 *

@@ -108,21 +108,22 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 
 
 		/*DESHACER CAMBIOS DE NODO ACTUAL*/
-
 		Jugada* jugadaADeshacer = nodoActual->devolverContenido();
-		Jugador* quienJugo = jugadaADeshacer->obtenerJugadorQueJugo();
+		Jugador* quienJugo = jugadaADeshacer->obtenerQuienJugo();
 		Lista<Coordenada*>* casillerosAfectados = jugadaADeshacer->obtenerCasilleros();
 
 		if (! jugadaADeshacer->huboDestapados() ){ //Fue colocar-quitar bandera
 			Coordenada* coordenadaDeJuego = casillerosAfectados->obtener(1);
 			juego->rehacerJugadaBandera(coordenadaDeJuego, quienJugo);
-
 		} else {
-
+			juego->taparCasilleros(casillerosAfectados);
 		}
-		//Corrijo puntaje de jugador
 
-
+		if ( jugadaADeshacer->fueEliminado() ){
+			juego->revivirJugador(quienJugo);
+		} else {
+			juego->restablecerPuntaje(quienJugo);
+		}
 
 		nodoActual = nodoActual->devolverPadre();
 		retroceder(cantidadDeNodos-1);
@@ -152,8 +153,8 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 			hijoASeguir = preguntarQueHijoSeguir();
 			nodoActual = nodoActual->devolverHijo(hijoASeguir);
 			avanzar(cantidadDeNodos - 1);
-
 		} else if (nodosPosibles == 1){
+
 			nodoActual = nodoActual->devolverHijo(1);
 		}
 	}
@@ -174,7 +175,7 @@ int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 
 		nodoActual =  hijosPosibles->obtenerCursor();
 		jugadaActual = nodoActual->devolverContenido();
-		Jugador quienJugo = jugadaActual->obtenerJugadorQueJugo();
+		Jugador* quienJugo = jugadaActual->obtenerQuienJugo();
 		Coordenada* modificada = jugadaActual->obtenerCasilleros()->obtener(1);
 
 		std::cout << std::endl << "La alternativa " << numeroDeHijo << " tiene:" << std::endl;
@@ -183,7 +184,7 @@ int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 
 			if( jugadaActual->fueEliminado() ){
 
-				std::cout 	<< "Eliminacion del jugador " << quienJugo.consultarNombre() << std::endl
+				std::cout 	<< "Eliminacion del jugador " << quienJugo->consultarNombre() << std::endl
 							<< " por pisar la mina en columna " << modificada->obtenerCoordX()
 							<< " y fila " << modificada->obtenerCoordY()
 							<< "."
@@ -191,21 +192,19 @@ int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 
 			} else {
 				std::cout 	<< jugadaActual->obtenerCantidadDeCasillerosModificados()
-							<< " casilleros modificados por el jugador " << quienJugo.consultarNombre()
+							<< " casilleros modificados por el jugador " << quienJugo->consultarNombre()
 							<< "."
 							<< std::endl;
 			}
 		} else {
 				std::cout 	<< "Colocacion de bandera en columna " << modificada->obtenerCoordX()
 							<< " y fila " << modificada->obtenerCoordY()
-							<< " por el jugador " << quienJugo.consultarNombre()
+							<< " por el jugador " << quienJugo->consultarNombre()
 							<< "."
 							<< std::endl;
 		}
-
 		numeroDeHijo++;
 	}
-
 	return pedirNumero("Que camino desea seguir?");
 }
 
@@ -231,12 +230,11 @@ void CondensadorDeFlujo::ejecutarJuego(){
 		avanzar(1);
 		sigueElJuego = !(juego->terminoLaPartida());
 	};
-
 }
 
 void CondensadorDeFlujo::inicializarJuego(int dificultad, int numeroDeJugadores, int filas, int columnas, std::string* nombresDeJugadores){
 		juego = new Juego(dificultad, numeroDeJugadores, filas, columnas, nombresDeJugadores);
-	}
+}
 
 
 int CondensadorDeFlujo::pedirNumero(std::string mensaje){

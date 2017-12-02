@@ -263,6 +263,15 @@ void Juego::rehacerJugadaBandera(Coordenada* donde, Jugador* quien){
 	}
 }
 
+void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
+	casillerosAfectados->iniciarCursor();
+	while(casillerosAfectados->avanzarCursor()){
+		/*
+		 * QUE EL TABLERO TAPE TODOS
+		 */
+	}
+}
+
 void Juego::restablecerPuntaje(Jugador* quien){
 
 }

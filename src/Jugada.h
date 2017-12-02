@@ -8,7 +8,7 @@
 
 class Jugada{
 private:
-	Jugador quienJugo;
+	Jugador* quienJugo;
 	bool eliminado;
 	Lista<Coordenada*>* casillerosModificados;
 	bool fueronDestapados;
@@ -25,7 +25,7 @@ public:
 	 * Post Si el jugador no fue seteado devuelve un jugador inicializado vacio
 	 * de otra forma devuelve el jugador que realizo la jugada
 	 */
-	Jugador obtenerJugadorQueJugo();
+	Jugador* obtenerQuienJugo();
 
 	/*
 	 * Post devuelve si el jugador de la jugada fue eliminado
@@ -55,7 +55,7 @@ public:
 	/*
 	 * Post establece el jugador que realizo la jugada
 	 */
-	void establecerQuienJugo(Jugador quienJugo);
+	void establecerQuienJugo(Jugador aEstablecer);
 
 	/*
 	 * Post establece la condicion de si el jugador fue eliminado o no

@@ -136,14 +136,15 @@ class Juego{
 	/*
 	 *
 	 */
-	void revivirJugador(Jugador jugadorARevivir){
-		arbitro->revivirJugador(jugadorARevivir);
+	void revivirJugador(Jugador* jugadorARevivir){
+		arbitro->revivirJugador(*jugadorARevivir);
 		//dibujante->revivirJugador(jugadorARevivir);
 	}
 
-	void taparCasilleros(){
-
-	}
+	/*
+	 *
+	 */
+	void taparCasilleros(Lista<Coordenada*>* casillerosAfectados);
 
 	/*
 	 *
