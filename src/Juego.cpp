@@ -1,10 +1,4 @@
 
-/*
- * Arbitro.cpp
- *
- *  Created on: Oct 22, 2017
- *      Author: juan
- */
 
 #include "Juego.h"
 

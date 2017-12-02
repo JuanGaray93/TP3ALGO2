@@ -138,7 +138,7 @@ class Juego{
 	 */
 	void revivirJugador(Jugador* jugadorARevivir){
 		arbitro->revivirJugador(*jugadorARevivir);
-		//dibujante->revivirJugador(jugadorARevivir);
+		dibujante->revivirJugador(jugadorARevivir);
 	}
 
 	/*

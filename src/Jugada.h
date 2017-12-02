@@ -1,4 +1,3 @@
-
 #ifndef JUGADA_H_
 #define JUGADA_H_
 
