@@ -102,6 +102,11 @@ class Juego{
 	 */
 	void tomarJugada();
 
+	/*  Overload de tomarJugada()
+	 *  repite las acciones realizadas en la jugada pasada.
+	 */
+	void tomarJugada(Jugada* jugada);
+
 	/*
 	 *Post: Recibe el input de que tipo de jugada va a realizar, "Poner/quitar bandera", "descubrir un casillero"
 	 */
@@ -134,32 +139,28 @@ class Juego{
 
 
 	/*
-	 *
+	 * Pre: El jugador que se le pasa fue previamente eliminado
+	 * Post: Se borra la indicacion en la imagen de que el jugador fue eliminado
+	 * 		 Se restaura el jugador a su lugar en la ronda
 	 */
-	void revivirJugador(Jugador* jugadorARevivir){
-		arbitro->revivirJugador(*jugadorARevivir);
-		// todo dibujante->revivirJugador(jugadorARevivir);
-	}
+	void revivirJugador(Jugador* jugadorARevivir);
 
-	/*
+	/* Pre: Las coordenadas pasadas son validas
+	 * Post: Los casilleros en esas coordenadas se tapan.
 	 *
 	 */
 	void taparCasilleros(Lista<Coordenada*>* casillerosAfectados);
 
-	/*
-	 *
+	/* Pre: La coordenada es valida en un casillero cubierto
+	 * Post: Si no habia bandera ahi, se coloca. De lo contrario se quita.
+	 * 		 No se afecta el puntaje del jugador.
 	 */
 	void deshacerJugadaBandera(Coordenada* donde, Jugador* quien);
 
 	/*
-	 *
+	 * Post: El jugador pasa a tener el puntaje almacenado en "quien"
 	 */
 	void restablecerPuntaje(Jugador* quien);
-
-	/*
-	 *
-	 */
-	void tomarJugada(Jugada* jugada);
 
 	/*
 	 * post

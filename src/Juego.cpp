@@ -85,6 +85,10 @@ void Juego::tomarUbicacionDeJugada(){
 	columnaDeJugada = pedirNumero("Por favor, ingrese la COLUMNA donde desea realizar la jugada", tablero.obtenerColumnaMaxima() ) - 1;
 }
 
+
+
+
+
 void Juego::tomarJugada(){
 	std::string queDibujar;
 	bool haJugado = false;
@@ -128,7 +132,8 @@ void Juego::tomarJugada(Jugada* jugada){
 	if ((opcionElegida == 1) && (! tablero.estaDescubierto(columnaDeJugada, filaDeJugada) )){
 
 		cambiarBandera(jugadorActual);
-		//Es destapar
+
+	//Es destapar
 
 		//RECORRER LA LISTA Y DESTAPAR? 1 A 1?
 	} else if ( ! tablero.hayBanderaEn(columnaDeJugada, filaDeJugada) ) {
@@ -136,8 +141,13 @@ void Juego::tomarJugada(Jugada* jugada){
 		descubrirCasillero(columnaDeJugada, filaDeJugada, jugadorActual);
 	}
 
-	this->dibujante->dibujarTablero(); //THIS?
+	this->dibujante->dibujarTablero();
 }
+
+
+
+
+
 
 //Logica de juego
 
@@ -259,6 +269,12 @@ std::string Juego::hacerCadena(int numero){
 	std::ostringstream ossnumero;
 	ossnumero << numero;
 	return ossnumero.str();
+}
+
+void Juego::revivirJugador(Jugador* jugadorARevivir){
+		arbitro->revivirJugador(*jugadorARevivir);
+		int nroJugador = jugadorARevivir->consultarNumero();
+		dibujante->revivirJugador(nroJugador);
 }
 
 Jugada* Juego::devolverJugada(){
