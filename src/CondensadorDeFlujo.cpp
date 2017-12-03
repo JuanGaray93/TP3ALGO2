@@ -23,6 +23,7 @@ void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada*>* nodoNuevo){
 
 
 void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
+	if(cantidadDeNodos >= this->devolverProfundidadActual()) throw ("No hay dicha cantidad de jugadas para deshacer");
 	if(nodoActual->tienePadre() && cantidadDeNodos > 0){
 
 
@@ -108,8 +109,8 @@ int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 			if( jugadaActual->fueEliminado() ){
 
 				std::cout 	<< "Eliminacion del jugador " << quienJugo->consultarNombre() << std::endl
-							<< " por pisar la mina en columna " << modificada->obtenerCoordX()
-							<< " y fila " << modificada->obtenerCoordY()
+							<< " por pisar la mina en columna " << modificada->obtenerCoordX() + 1
+							<< " y fila " << modificada->obtenerCoordY()+ 1
 							<< "."
 							<< std::endl;
 
@@ -120,8 +121,8 @@ int CondensadorDeFlujo::preguntarQueHijoSeguir(){
 							<< std::endl;
 			}
 		} else {
-				std::cout 	<< "Colocacion de bandera en columna " << modificada->obtenerCoordX()
-							<< " y fila " << modificada->obtenerCoordY()
+				std::cout 	<< "Colocacion de bandera en columna " << modificada->obtenerCoordX()+ 1
+							<< " y fila " << modificada->obtenerCoordY()+ 1
 							<< " por el jugador " << quienJugo->consultarNombre()
 							<< "."
 							<< std::endl;
@@ -149,7 +150,13 @@ void CondensadorDeFlujo::ejecutarJuego(){
 
 
 		juego->avanzarTurno();
-		avanzar(1);
+
+		int opcion = this->pedirNumero("Ingrese 1 para continuar con el flujo \n 2 para retroceder");
+		if(opcion == 1)		avanzar(1);
+		else{
+			int cantJugadasARetroceder  = pedirNumero("Ingrese numero de jugadas a retroceder: ");
+			retroceder(cantJugadasARetroceder);
+		}
 		sigueElJuego = !(juego->terminoLaPartida());
 	}
 }
@@ -196,4 +203,6 @@ int CondensadorDeFlujo::pedirNumero(std::string mensaje, int numeroMaximo){
 	}
 	return numeroIngresado;
 }
+
+
 
