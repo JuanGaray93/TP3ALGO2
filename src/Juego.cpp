@@ -126,22 +126,32 @@ void Juego::tomarJugada(Jugada* jugada){
 	std::string queDibujar;
 	int opcionElegida;
 	int jugadorActual;
+
 	opcionElegida = (jugada->huboDestapados()) ? 1 : 2;
 	jugadorActual = jugada->obtenerQuienJugo()->consultarNumero();
+	Lista<Coordenada*>* coordenadasDeJugada = jugada->obtenerCasilleros();
+
+	/* La primera coordenada de coordenadasDeJugada es aquella en la que se hizo la jugada.
+	 * Solo hace falta esta coordenada, ya que otros casilleros afectados
+	 * lo son por la recursividad en descubrirCasillero().
+	 */
+
+	Coordenada* coordDeJugada = coordenadasDeJugada->obtener(1);
+	columnaDeJugada = coordDeJugada->obtenerCoordX();
+	filaDeJugada = coordDeJugada->obtenerCoordY();
+
 	//Es colocar/quitar bandera:
 	if ((opcionElegida == 1) && (! tablero.estaDescubierto(columnaDeJugada, filaDeJugada) )){
 
 		cambiarBandera(jugadorActual);
 
 	//Es destapar
-
-		//RECORRER LA LISTA Y DESTAPAR? 1 A 1?
-	} else if ( ! tablero.hayBanderaEn(columnaDeJugada, filaDeJugada) ) {
+	} else {
 
 		descubrirCasillero(columnaDeJugada, filaDeJugada, jugadorActual);
 	}
 
-	this->dibujante->dibujarTablero();
+	dibujante->dibujarTablero();
 }
 
 
