@@ -166,6 +166,12 @@ class Juego{
 	 * post
 	 */
 	void retrocederTurno(Jugador* jugada);
+
+	/*
+	 *
+	 */
+	void dibujarTablero();
+
 	/*
 	 * Libera la memoria pedida para el DIBUJANTE y el ARBITRO.
 	 *

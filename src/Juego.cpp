@@ -329,6 +329,10 @@ void Juego::retrocederTurno(Jugador* quienJugo){
 	arbitro->retomarPosicionDelCursor(quienJugo);
 }
 
+void Juego::dibujarTablero(){
+	dibujante->dibujarTablero();
+}
+
 Juego::~Juego(){
 	delete dibujante;
 	delete arbitro;
