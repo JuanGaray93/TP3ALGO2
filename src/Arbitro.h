@@ -17,7 +17,7 @@ private:
 
 	int dificultad;
 
-	Lista<Jugador> listaDeJugadores;
+	Lista<Jugador*>* listaDeJugadores;
 	Jugador actual;
 	int posicionCursor;
 
@@ -30,7 +30,7 @@ private:
 	 * Pre la lista fue inicializada durante el juego
 	 * Post deja el cursor apuntando al jugador que le corresponde jugar
 	 */
-	void retomarPosicionDelCursor(Jugador posicionDelCursor);
+	void retomarPosicionDelCursor(Jugador* posicionDelCursor);
 
 public:
 
@@ -92,12 +92,13 @@ public:
 
 	/*
 	 * Pre: Se volvio al pasado y un jugador fue eliminado
-	 * Post: Revive al jugador eliminado
+	 * Post: Revive al jugador eliminado, usando memoria a liberar
 	 */
 	void revivirJugador(Jugador jugadorARevivir);
 
 	/*
-	 *
+	 *Post setea al jugador el puntaje que tenia en la jugada
+	 *Post deja el cursor de la lista donde estaba
 	 */
 	void restablecerPuntaje(Jugador* quien);
 

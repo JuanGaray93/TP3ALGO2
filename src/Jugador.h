@@ -14,7 +14,7 @@ class Jugador{
 	public:
 
 		/*
-		 * post: Crea un jugador con puntaje y numero de jugador en cero
+		 * post: Crea un jugador con puntaje en cero
 		 */
 		Jugador(std::string nom, int numeroJugador);
 
@@ -22,6 +22,11 @@ class Jugador{
 		 * post: Crea un jugador con valores default: todos en cero y nombre "JUGADOR AUXILIAR"
 		 */
 		Jugador();
+
+		/*
+		 * post: Crea un jugador copia de otro jugador
+		 */
+		Jugador(const Jugador& otroJugador);
 
 		//GET
 
@@ -51,6 +56,8 @@ class Jugador{
 		 * post: Este jugador adquiere todos los atributos del jugador que se asigna.
 		 */
 		Jugador operator=(const Jugador& otroJugador);
+
+		void establecerPuntaje(int puntos);
 
 
 

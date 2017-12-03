@@ -13,6 +13,11 @@ Jugador::Jugador(){
 	this->numeroJugador = 0;
 }
 
+Jugador::Jugador(const Jugador& otroJugador){
+	this->puntaje = otroJugador.consultarPuntaje();
+	this->nombre = otroJugador.consultarNombre();
+	this->numeroJugador = otroJugador.consultarNumero();
+}
 //GET
 
 int Jugador::consultarPuntaje() const{
@@ -38,4 +43,8 @@ Jugador Jugador::operator=(const Jugador& otroJugador){
 	this->nombre = otroJugador.consultarNombre();
 	this->numeroJugador = otroJugador.consultarNumero();
 	return *this;
+}
+
+void Jugador::establecerPuntaje(int puntos){
+	this->puntaje = puntos;
 }

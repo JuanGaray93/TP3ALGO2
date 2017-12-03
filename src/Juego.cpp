@@ -266,8 +266,8 @@ void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
 	}
 }
 
-void Juego::restablecerPuntaje(Jugador* quien){
-
+void Juego::restablecerPuntaje(Jugador* quienJugo){
+	arbitro->restablecerPuntaje(quienJugo);
 }
 
 
