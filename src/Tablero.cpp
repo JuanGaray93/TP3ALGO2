@@ -62,7 +62,7 @@ void Tablero::inicializarMatriz(){
 
 void Tablero::crearBombas( int dificultad){
 
-	srand(time(NULL));
+	srand(time(0));
 	int bombasRestantes = bombasTotales;
 
 	while (bombasRestantes > 0){
@@ -159,7 +159,7 @@ bool Tablero::esCoordenadaValida(int columna, int fila){
 }
 
 bool Tablero::estaIniciado( int columna,  int fila){
-	return (matriz[columna][fila] != NULL);
+	return (matriz[columna][fila] != 0);
 }
 
 bool Tablero::existe( int columna,  int fila){

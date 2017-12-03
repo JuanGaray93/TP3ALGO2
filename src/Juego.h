@@ -157,6 +157,15 @@ class Juego{
 	void restablecerPuntaje(Jugador* quien);
 
 	/*
+	 *
+	 */
+	void tomarJugada(Jugada* jugada);
+
+	/*
+	 * post
+	 */
+	void retrocederTurno(Jugador* jugada);
+	/*
 	 * Libera la memoria pedida para el DIBUJANTE y el ARBITRO.
 	 *
 	 */

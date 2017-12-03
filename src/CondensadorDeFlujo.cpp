@@ -49,8 +49,8 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 		//RESTAURO PUNTAJE
 		juego->restablecerPuntaje(quienJugo);
 
-		//RETROCEDER TURNO ( TODO )
-		//juego->retrocederTurno();
+		//DEJO EL CURSOR DE LA LISTA EN EL JUGADOR QUE LE TOCA JUGAR
+		juego->retrocederTurno(quienJugo);
 
 
 		nodoActual = nodoActual->devolverPadre();

@@ -124,6 +124,7 @@ void Arbitro::restablecerPuntaje(Jugador* quienJugo){
 		encontrado = (quienJugo->consultarNumero() == buscado->consultarNumero());
 	}
 	 if(encontrado) buscado->establecerPuntaje(quienJugo->consultarPuntaje());
+	 retomarPosicionDelCursor(actual);
 }
 
 Arbitro::~Arbitro(){

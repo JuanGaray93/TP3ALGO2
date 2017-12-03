@@ -26,13 +26,14 @@ private:
 	 */
 	void inicializarListaDeJugadores(std::string* nombres, int cantidadJugadores);
 
+
+public:
+
 	/*
 	 * Pre la lista fue inicializada durante el juego
 	 * Post deja el cursor apuntando al jugador que le corresponde jugar
 	 */
 	void retomarPosicionDelCursor(Jugador* posicionDelCursor);
-
-public:
 
 	Arbitro(std::string* nombres, int cantidadJugadores, int dificultadPedida);
 
@@ -103,7 +104,7 @@ public:
 	void restablecerPuntaje(Jugador* quien);
 
 	/*
-	 *
+	 *Post Libera los recursos asociados
 	 */
 	~Arbitro();
 };

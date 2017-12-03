@@ -118,6 +118,26 @@ void Juego::tomarJugada(){
 	this->dibujante->dibujarTablero();
 }
 
+void Juego::tomarJugada(Jugada* jugada){
+	std::string queDibujar;
+	int opcionElegida;
+	int jugadorActual;
+	opcionElegida = (jugada->huboDestapados()) ? 1 : 2;
+	jugadorActual = jugada->obtenerQuienJugo()->consultarNumero();
+	//Es colocar/quitar bandera:
+	if ((opcionElegida == 1) && (! tablero.estaDescubierto(columnaDeJugada, filaDeJugada) )){
+
+		cambiarBandera(jugadorActual);
+		//Es destapar
+		//RECORRER LA LISTA Y DESTAPAR? 1 A 1?
+	} else if ( ! tablero.hayBanderaEn(columnaDeJugada, filaDeJugada) ) {
+
+		descubrirCasillero(columnaDeJugada, filaDeJugada, jugadorActual);
+	}
+
+	this->dibujante->dibujarTablero();
+}
+
 //Logica de juego
 
 void Juego::avanzarTurno(){
@@ -127,7 +147,6 @@ void Juego::avanzarTurno(){
 
 	arbitro->avanzarTurno(seDebeEliminarJugador);
 	this->jugadaActual->establecerQuienJugo(this->arbitro->devolverJugador());
-	this->jugadaActual->establecerQueFueEliminado(seDebeEliminarJugador);
 	seDebeEliminarJugador = false;
 }
 
@@ -201,6 +220,7 @@ void Juego::descubrirCasillero(int columnaDeCasillero, int filaDeCasillero, int 
 		}
 	}
 	Coordenada* descubierta = new Coordenada(columnaDeCasillero, filaDeCasillero);
+	this->jugadaActual->establecerQueFueEliminado(seDebeEliminarJugador);
 	this->jugadaActual->agregarCasilleroModificado(descubierta);
 	this->dibujante->cambiarCuadrante(columnaDeCasillero, filaDeCasillero, queDibujar, jugadorActual, false);
 }
@@ -277,7 +297,9 @@ void Juego::restablecerPuntaje(Jugador* quienJugo){
 	arbitro->restablecerPuntaje(quienJugo);
 }
 
-
+void Juego::retrocederTurno(Jugador* quienJugo){
+	arbitro->retomarPosicionDelCursor(quienJugo);
+}
 
 Juego::~Juego(){
 	delete dibujante;
