@@ -54,8 +54,14 @@ void Jugada::establecerQueFueronDestapados(bool destapados){
 }
 
 Jugada::~Jugada(){
+	casillerosModificados->iniciarCursor();
+	while(casillerosModificados->avanzarCursor()){
+		Coordenada* coordAEliminar = casillerosModificados->obtenerCursor();
+		delete coordAEliminar;
+	}
 
-
+	delete casillerosModificados;
+	delete quienJugo;
 }
 
 
