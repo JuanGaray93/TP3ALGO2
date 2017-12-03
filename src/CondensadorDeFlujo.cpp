@@ -26,7 +26,7 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 	if(nodoActual->tienePadre() && cantidadDeNodos > 0){
 
 
-		/*DESHACER CAMBIOS DE NODO ACTUAL*/
+		//DESHACER CAMBIOS DE NODO ACTUAL
 		Jugada* jugadaADeshacer = nodoActual->devolverContenido();
 		Jugador* quienJugo = jugadaADeshacer->obtenerQuienJugo();
 		Lista<Coordenada*>* casillerosAfectados = jugadaADeshacer->obtenerCasilleros();
@@ -68,11 +68,7 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
 
 
-
-		/*SUMAR CAMBIOS SOBRE JUEGO*/
-
-
-
+		//SUMAR CAMBIOS SOBRE JUEGO ( TODO )
 
 		int hijoASeguir;
 
@@ -86,8 +82,6 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 			nodoActual = nodoActual->devolverHijo(1);
 		}
 	}
-
-
 }
 
 int CondensadorDeFlujo::preguntarQueHijoSeguir(){

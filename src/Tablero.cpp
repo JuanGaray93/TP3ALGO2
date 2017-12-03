@@ -190,13 +190,6 @@ void Tablero::taparCasillero(Coordenada* casillero){
 }
 
 
-
-
-
-
-
-
-
 Tablero::~Tablero(){
 	for(int columna = 0; columna < columnaMaxima; columna++ ){
 		for(int fila = 0; fila < filaMaxima; fila++){
