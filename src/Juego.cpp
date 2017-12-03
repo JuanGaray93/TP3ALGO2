@@ -129,13 +129,14 @@ void Juego::tomarJugada(Jugada* jugada){
 
 		cambiarBandera(jugadorActual);
 		//Es destapar
+
 		//RECORRER LA LISTA Y DESTAPAR? 1 A 1?
 	} else if ( ! tablero.hayBanderaEn(columnaDeJugada, filaDeJugada) ) {
 
 		descubrirCasillero(columnaDeJugada, filaDeJugada, jugadorActual);
 	}
 
-	this->dibujante->dibujarTablero();
+	this->dibujante->dibujarTablero(); //THIS?
 }
 
 //Logica de juego

@@ -69,6 +69,8 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
 
 		//SUMAR CAMBIOS SOBRE JUEGO ( TODO )
+		juego->tomarJugada(nodoActual->devolverContenido());
+		//DIBUJAR TABLERO?
 
 		int hijoASeguir;
 
