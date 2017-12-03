@@ -94,7 +94,7 @@ void Juego::tomarJugada(){
 	bool haJugado = false;
 	int opcionElegida;
 	int jugadorActual;
-	jugadaActual = new Jugada;
+
 
 	while (! haJugado){
 
@@ -162,8 +162,9 @@ void Juego::tomarJugada(Jugada* jugada){
 //Logica de juego
 
 void Juego::avanzarTurno(){
+	jugadaActual = new Jugada;
 	if (seDebeEliminarJugador){
-		std::cout << (arbitro->devolverJugador()).consultarNombre() << " fue eliminado!" << std::endl;
+		std::cout << (arbitro->devolverJugador())->consultarNombre() << " fue eliminado!" << std::endl;
 	}
 
 	arbitro->avanzarTurno(seDebeEliminarJugador);
@@ -264,7 +265,7 @@ void Juego::descubrirCasillerosCircundantes(int columnaDeCasillero, int filaDeCa
 }
 
 void Juego::declararTurno(){
-	std::cout << "Es el turno de "<< (arbitro->devolverJugador()).consultarNombre() << std::endl;
+	std::cout << "Es el turno de "<< (arbitro->devolverJugador())->consultarNombre() << std::endl;
 }
 
 bool Juego::terminoLaPartida(){

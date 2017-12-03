@@ -18,7 +18,7 @@ private:
 	int dificultad;
 
 	Lista<Jugador*>* listaDeJugadores;
-	Jugador actual;
+	Jugador* actual;
 	int posicionCursor;
 
 	/*
@@ -40,7 +40,7 @@ public:
 	/* Pre: La lista debe estar iniciada con el cursor iniciado
 	 * Post: Devuelve puntero al jugador al que le toca jugar.
 	 */
-	Jugador devolverJugador();
+	Jugador* devolverJugador();
 
 	/*
 	 * Elimina al jugador de la listaDeJugadores

@@ -69,8 +69,7 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 
 
 		//SUMAR CAMBIOS SOBRE JUEGO ( TODO )
-		juego->tomarJugada(nodoActual->devolverContenido());
-		//DIBUJAR TABLERO?
+		//	juego->tomarJugada(nodoActual->devolverContenido());
 
 		int hijoASeguir;
 
@@ -143,14 +142,13 @@ void CondensadorDeFlujo::ejecutarJuego(){
 
 		juego->declararTurno();
 		juego->tomarJugada();
-		juego->avanzarTurno();
-		if(huboCambios){
-			//Guardo en un nodo nuevo el estado actual de la partida
-			Jugada* jugadaNueva = juego->devolverJugada();
-			NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaNueva);
-			agregarNodo(aGuardar);
-		}
+		//Guardo en un nodo nuevo el estado actual de la partida
+		Jugada* jugadaNueva = juego->devolverJugada();
+		NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaNueva);
+		agregarNodo(aGuardar);
 
+
+		juego->avanzarTurno();
 		avanzar(1);
 		sigueElJuego = !(juego->terminoLaPartida());
 	}

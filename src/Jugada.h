@@ -54,7 +54,7 @@ public:
 	/*
 	 * Post establece el jugador que realizo la jugada
 	 */
-	void establecerQuienJugo(Jugador aEstablecer);
+	void establecerQuienJugo(Jugador* aEstablecer);
 
 	/*
 	 * Post establece la condicion de si el jugador fue eliminado o no

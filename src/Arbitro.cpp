@@ -13,18 +13,19 @@ Arbitro::Arbitro(std::string* nombresDeJugadores, int numeroDeJugadores, int dif
 	this->listaDeJugadores = new Lista<Jugador*>;
 	this->inicializarListaDeJugadores(nombresDeJugadores, numeroDeJugadores);
 	posicionCursor = 0;
+	this->actual = 0;
 }
 
-Jugador Arbitro::devolverJugador(){
+Jugador* Arbitro::devolverJugador(){
 	return actual;
 }
 
 void Arbitro::sumarPuntaje(int puntos){
-	actual.sumarPuntaje(puntos);
+	actual->sumarPuntaje(puntos);
 }
 
 int Arbitro::devolverPuntaje(){
-	return devolverJugador().consultarPuntaje();
+	return devolverJugador()->consultarPuntaje();
 }
 
 void Arbitro::avanzarTurno(bool fueEliminado){
@@ -35,7 +36,7 @@ void Arbitro::avanzarTurno(bool fueEliminado){
 	}
 	posicionCursor++;
 	if(!listaDeJugadores->avanzarCursor()) inicializarCursor();
-	actual = *listaDeJugadores->obtenerCursor();
+	actual = listaDeJugadores->obtenerCursor();
 }
 
 void Arbitro::inicializarListaDeJugadores(std::string* nombres, int cantidadJugadores){
@@ -46,33 +47,33 @@ void Arbitro::inicializarListaDeJugadores(std::string* nombres, int cantidadJuga
 }
 
 int Arbitro::devolverNumeroDeTurno(){
-	int nroJugador = actual.consultarNumero();
+	int nroJugador = actual->consultarNumero();
 	return nroJugador;
 }
 
 bool Arbitro::quedaUno(){
-	return (listaDeJugadores->estaVacia());
+	return (listaDeJugadores->contarElementos() == 1);
 }
 
 void Arbitro::anunciarGanador(){
 	int puntajeMaximo = 0;
-	Jugador ganador = actual;
-	Jugador posibleGanador;
-
+	Jugador* ganador = actual;
+	Jugador* posibleGanador;
+	listaDeJugadores->iniciarCursor();
 	while(! listaDeJugadores->avanzarCursor() ){
 
-		posibleGanador = *listaDeJugadores->obtenerCursor();
+		posibleGanador = listaDeJugadores->obtenerCursor();
 
-		if (posibleGanador.consultarPuntaje() > puntajeMaximo ){
+		if (posibleGanador->consultarPuntaje() > puntajeMaximo ){
 			ganador = posibleGanador;
-			puntajeMaximo = posibleGanador.consultarPuntaje();
+			puntajeMaximo = posibleGanador->consultarPuntaje();
 		}
 	}
 
 	std::cout << "El ganador es "
-			  << ganador.consultarNombre()
+			  << ganador->consultarNombre()
 			  << " con "
-			  << ganador.consultarPuntaje()
+			  << ganador->consultarPuntaje()
 			  << " puntos!"
 			  << std::endl;
 }

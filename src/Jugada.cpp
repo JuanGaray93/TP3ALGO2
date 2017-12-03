@@ -37,8 +37,8 @@ unsigned int Jugada::obtenerCantidadDeCasillerosModificados(){
 
 //SET
 
-void Jugada::establecerQuienJugo(Jugador aEstablecer){
-	*quienJugo = aEstablecer;
+void Jugada::establecerQuienJugo(Jugador* aEstablecer){
+	quienJugo = aEstablecer;
 }
 
 void Jugada::establecerQueFueEliminado(bool eliminado){
