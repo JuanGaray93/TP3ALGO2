@@ -244,25 +244,32 @@ Jugada* Juego::devolverJugada(){
 	return this->jugadaActual ;
 }
 
-void Juego::rehacerJugadaBandera(Coordenada* donde, Jugador* quien){
+void Juego::deshacerJugadaBandera(Coordenada* donde, Jugador* quien){
 
 	int columna = donde->obtenerCoordX();
 	int fila = donde->obtenerCoordY();
 
 	if ( tablero.hayBanderaEn(columna, fila) ){
 		tablero.quitarBandera(columna, fila);
+		dibujante->cambiarCuadrante(columna, fila, "cubierto", quien->consultarNumero() , false);
+
 	} else {
 		int nroJugador = quien->consultarNumero();
 		tablero.colocarBandera(columna, fila, nroJugador);
+		dibujante->cambiarCuadrante(columna,fila,"bandera", quien->consultarNumero(), false);
 	}
 }
 
 void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
 	casillerosAfectados->iniciarCursor();
 	while(casillerosAfectados->avanzarCursor()){
-		/*
-		 * QUE EL TABLERO TAPE TODOS
-		 */
+
+		Coordenada* casilleroActual = casillerosAfectados->obtenerCursor();
+		tablero.taparCasillero( casilleroActual );
+
+		int col = casilleroActual->obtenerCoordX();
+		int fil = casilleroActual->obtenerCoordY();
+		dibujante->cambiarCuadrante(col, fil, "cubierto", 0, false);
 	}
 }
 

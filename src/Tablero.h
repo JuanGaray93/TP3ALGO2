@@ -144,7 +144,7 @@ class Tablero{
 
 	//DESHACER JUGADAS
 
-	void taparCasilleros(Lista<Coordenada*>* casilleros);
+	void taparCasillero(Coordenada* casillero);
 
 
 

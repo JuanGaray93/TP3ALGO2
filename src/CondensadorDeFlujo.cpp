@@ -35,7 +35,7 @@ void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
 		//DESHACER JUGADA DE BANDERA
 		if ( ! jugadaADeshacer->huboDestapados() ){
 			Coordenada* coordenadaDeJuego = casillerosAfectados->obtener(1);
-			juego->rehacerJugadaBandera(coordenadaDeJuego, quienJugo);
+			juego->deshacerJugadaBandera(coordenadaDeJuego, quienJugo);
 
 		//DESHACER DESTAPE DE CASILLEROS
 		} else {

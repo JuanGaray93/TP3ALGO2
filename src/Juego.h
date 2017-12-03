@@ -149,7 +149,7 @@ class Juego{
 	/*
 	 *
 	 */
-	void rehacerJugadaBandera(Coordenada* donde, Jugador* quien);
+	void deshacerJugadaBandera(Coordenada* donde, Jugador* quien);
 
 	/*
 	 *
