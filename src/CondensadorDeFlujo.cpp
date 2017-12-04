@@ -141,22 +141,26 @@ void CondensadorDeFlujo::ejecutarJuego(){
 	while(sigueElJuego){
 
 		juego->declararTurno();
-		juego->tomarJugada();
+
 		//Guardo en un nodo nuevo el estado actual de la partida
 		Jugada* jugadaNueva = juego->devolverJugada();
 		NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaNueva);
 		nodoActual = aGuardar;
 		agregarNodo(aGuardar);
 
-
 		juego->avanzarTurno();
 
-		int opcion = this->pedirNumero("Ingrese 1 para continuar con el flujo \n Ingrese 2 para retroceder");
-		if(opcion == 1)		avanzar(1);
-		else{
+		int opcion = this->pedirNumero("Ingrese 1 para continuar jugando.\n Ingrese 2 para retroceder.\n Ingrese 3 para avanzar a una jugada deshecha.\n", 3);
+		if (opcion == 2){
+
 			int cantJugadasARetroceder  = pedirNumero("Ingrese numero de jugadas a retroceder: ");
 			retroceder(cantJugadasARetroceder);
+		} else if (opcion == 3){
+			int cantJugadasAAvanzar  = pedirNumero("Ingrese numero de jugadas a repetir: ");
+			avanzar(cantJugadasAAvanzar);
 		}
+
+		juego->tomarJugada();
 		sigueElJuego = !(juego->terminoLaPartida());
 		juego->dibujarTablero();
 	}

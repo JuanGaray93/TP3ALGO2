@@ -32,6 +32,8 @@ public:
 	 */
 	NodoDeArbol(NodoDeArbol* padreNuevo, T nuevoContenido);
 
+	//SET
+
 	/*
 	 * Pre: El nodo existe
 	 * Post: el nodo pasa a tener el contenido dado.
@@ -44,6 +46,14 @@ public:
 	 * Post: El nodo tiene de hijo el nodo pasado
 	 */
 	void asignarNuevoHijo(NodoDeArbol* nuevoHijo);
+
+	/*
+	 *
+	 */
+	void asignarPadre();
+
+	//GET
+
 
 	/*
 	 * Pre: El nodo existe
