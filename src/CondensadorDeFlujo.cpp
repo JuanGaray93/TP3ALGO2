@@ -150,14 +150,16 @@ void CondensadorDeFlujo::ejecutarJuego(){
 
 		juego->avanzarTurno();
 
-		int opcion = this->pedirNumero("Ingrese 1 para continuar jugando.\n Ingrese 2 para retroceder.\n Ingrese 3 para avanzar a una jugada deshecha.\n", 3);
+		int opcion = this->pedirNumero(" Ingrese 1 para continuar jugando.\n Ingrese 2 para retroceder.\n Ingrese 3 para avanzar a una jugada deshecha.\n", 3);
 		if (opcion == 2){
 
 			int cantJugadasARetroceder  = pedirNumero("Ingrese numero de jugadas a retroceder: ");
 			retroceder(cantJugadasARetroceder);
+			juego->dibujarTablero();
 		} else if (opcion == 3){
 			int cantJugadasAAvanzar  = pedirNumero("Ingrese numero de jugadas a repetir: ");
 			avanzar(cantJugadasAAvanzar);
+			juego->dibujarTablero();
 		}
 
 		juego->tomarJugada();
