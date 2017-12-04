@@ -145,7 +145,7 @@ NodoDeArbol<T>* NodoDeArbol<T>::devolverPadre(){
 
 template <class T>
 bool NodoDeArbol<T>::tienePadre(){
-	return (padre == NULL);
+	return (this->padre != NULL);
 }
 
 

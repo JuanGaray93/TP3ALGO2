@@ -119,7 +119,6 @@ void Juego::tomarJugada(){
 		}
 	}
 
-	this->dibujante->dibujarTablero();
 }
 
 void Juego::tomarJugada(Jugada* jugada){
@@ -151,7 +150,6 @@ void Juego::tomarJugada(Jugada* jugada){
 		descubrirCasillero(columnaDeJugada, filaDeJugada, jugadorActual);
 	}
 
-	dibujante->dibujarTablero();
 }
 
 

@@ -23,7 +23,7 @@ void CondensadorDeFlujo::agregarNodo(NodoDeArbol<Jugada*>* nodoNuevo){
 
 
 void CondensadorDeFlujo::retroceder(int cantidadDeNodos){
-	if(cantidadDeNodos >= this->devolverProfundidadActual()) throw ("No hay dicha cantidad de jugadas para deshacer");
+	if(cantidadDeNodos > this->devolverProfundidadActual()) throw ("No hay dicha cantidad de jugadas para deshacer");
 	if(nodoActual->tienePadre() && cantidadDeNodos > 0){
 
 
@@ -80,7 +80,6 @@ void CondensadorDeFlujo::avanzar(int cantidadDeNodos){
 			nodoActual = nodoActual->devolverHijo(hijoASeguir);
 			avanzar(cantidadDeNodos - 1);
 		} else if (nodosPosibles == 1){
-
 			nodoActual = nodoActual->devolverHijo(1);
 		}
 	}
@@ -146,18 +145,20 @@ void CondensadorDeFlujo::ejecutarJuego(){
 		//Guardo en un nodo nuevo el estado actual de la partida
 		Jugada* jugadaNueva = juego->devolverJugada();
 		NodoDeArbol<Jugada*>* aGuardar = new NodoDeArbol<Jugada*>(nodoActual, jugadaNueva);
+		nodoActual = aGuardar;
 		agregarNodo(aGuardar);
 
 
 		juego->avanzarTurno();
 
-		int opcion = this->pedirNumero("Ingrese 1 para continuar con el flujo \n 2 para retroceder");
+		int opcion = this->pedirNumero("Ingrese 1 para continuar con el flujo \n Ingrese 2 para retroceder");
 		if(opcion == 1)		avanzar(1);
 		else{
 			int cantJugadasARetroceder  = pedirNumero("Ingrese numero de jugadas a retroceder: ");
 			retroceder(cantJugadasARetroceder);
 		}
 		sigueElJuego = !(juego->terminoLaPartida());
+		juego->dibujarTablero();
 	}
 }
 
@@ -203,6 +204,5 @@ int CondensadorDeFlujo::pedirNumero(std::string mensaje, int numeroMaximo){
 	}
 	return numeroIngresado;
 }
-
 
 

@@ -82,6 +82,8 @@ public:
 	 */
 	int pedirNumero(std::string mensaje, int numeroMaximo);
 
+	void asignarPadre(NodoDeArbol<Jugada*>* nodoNuevo);
+
 
 
 
