@@ -110,9 +110,10 @@ void Arbitro::retomarPosicionDelCursor(Jugador* posicionDelCursor){
 	listaDeJugadores->iniciarCursor();
 	posicionCursor = 1;
 	while(listaDeJugadores->avanzarCursor() && ! encontrado){
-		encontrado = posicionDelCursor == listaDeJugadores->obtenerCursor();
+		encontrado = posicionDelCursor->consultarNumero() + 1 == listaDeJugadores->obtenerCursor()->consultarNumero();
 		posicionCursor++;
 	}
+	if(!encontrado) this->inicializarCursor();
 }
 
 void Arbitro::restablecerPuntaje(Jugador* quienJugo){

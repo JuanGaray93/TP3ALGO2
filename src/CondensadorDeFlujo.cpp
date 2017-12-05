@@ -156,7 +156,9 @@ void CondensadorDeFlujo::ejecutarJuego(){
 			int cantJugadasARetroceder  = pedirNumero("Ingrese numero de jugadas a retroceder: ");
 			retroceder(cantJugadasARetroceder);
 			juego->dibujarTablero();
+
 		} else if (opcion == 3){
+
 			int cantJugadasAAvanzar  = pedirNumero("Ingrese numero de jugadas a repetir: ");
 			avanzar(cantJugadasAAvanzar);
 			juego->dibujarTablero();
