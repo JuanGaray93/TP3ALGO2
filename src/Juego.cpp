@@ -294,16 +294,19 @@ void Juego::deshacerJugadaBandera(Coordenada* donde, Jugador* quien){
 
 	int columna = donde->obtenerCoordX();
 	int fila = donde->obtenerCoordY();
+	int nroJugador = quien->consultarNumero();
+	std::string queDibujar;
 
 	if ( tablero.hayBanderaEn(columna, fila) ){
 		tablero.quitarBandera(columna, fila);
-		dibujante->cambiarCuadrante(columna, fila, "cubierto", quien->consultarNumero() , false);
+		queDibujar = "cubierto";
 
 	} else {
-		int nroJugador = quien->consultarNumero();
+
 		tablero.colocarBandera(columna, fila, nroJugador);
-		dibujante->cambiarCuadrante(columna,fila,"bandera", quien->consultarNumero(), false);
+		queDibujar = "bandera";
 	}
+	dibujante->cambiarCuadrante(columna, fila, queDibujar, nroJugador , false);
 }
 
 void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
