@@ -310,6 +310,7 @@ void Juego::deshacerJugadaBandera(Coordenada* donde, Jugador* quien){
 }
 
 void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
+
 	casillerosAfectados->iniciarCursor();
 	while(casillerosAfectados->avanzarCursor()){
 
@@ -324,6 +325,9 @@ void Juego::taparCasilleros(Lista<Coordenada*>* casillerosAfectados){
 
 void Juego::restablecerPuntaje(Jugador* quienJugo){
 	arbitro->restablecerPuntaje(quienJugo);
+	int puntaje = quienJugo->consultarPuntaje();
+	int nroJugador = quienJugo->consultarNumero();
+	dibujante->cambiarPuntaje(puntaje, nroJugador);
 }
 
 void Juego::retrocederTurno(Jugador* quienJugo){
